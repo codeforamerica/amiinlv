@@ -30,6 +30,11 @@ $(document).ready(function() {
         $('#alert').slideUp(200);
     });
 
+    $('#marker').css('display', 'block');
+    $('#marker').animate({ opacity: 0 }, 0);
+    $('#input-go').click(function() {
+        $('#marker').animate( {opacity: 1, top: '200'}, 250);
+    })
 
 });
 
