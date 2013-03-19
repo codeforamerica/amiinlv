@@ -38,7 +38,14 @@ function makeMap() {
 
     var map = L.map('map', { 
         center: new L.LatLng(36.18, -115.14),
-        zoom: 12
+        zoom: 12,
+        dragging: false,
+        touchZoom: false,
+        scrollWheelZoom: false,
+        doubleClickZoom: false,
+        boxZoom: false,
+        keyboard: false,
+        zoomControl: false
     })
     L.tileLayer(mapTileset, {
         attribution: mapAttrib,
