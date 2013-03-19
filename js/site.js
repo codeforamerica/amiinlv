@@ -34,8 +34,10 @@ $(document).ready(function() {
     $('#marker').animate({ opacity: 0 }, 0);
     $('#input-go').click(function() {
         $('#marker').animate( {opacity: 1, top: '200'}, 250);
+        $('#question').fadeOut(250, function() {
+            $('#answer').fadeIn(250);
+        });
     })
-
 });
 
 function makeMap() {
