@@ -1,11 +1,7 @@
-var cartoJSON = "http://cfa.cartodb.com/api/v1/viz/25045/viz.json";
+var cartoJSON = 'http://cfa.cartodb.com/api/v1/viz/25045/viz.json';
 var mapAttrib = 'CartoDB <a href="http://cartodb.com/attributions">attribution</a>, &copy;2012 Nokia <a href="http://here.net/services/terms">Terms of use</a>';
-
-
-var cdb = {};
-function getCartoDB(data) {
-    cdb = data;
-}
+var cartoObject = {};
+// note: don't use variable 'cdb' it is reserved by cartoDB
 
 $(document).ready(function() {
 
@@ -17,9 +13,9 @@ $(document).ready(function() {
         async: false,
         dataType: 'jsonp',
         success: function(data) {
-            getCartoDB(data);
+            cartoObject = data;
+            mapTileset = cartoObject.layers[0].options.urlTemplate;
             makeMap();
-            $('a.leaflet-control-zoom-in').contents().replaceWith('');
         }
     });
 
@@ -45,6 +41,7 @@ $(document).ready(function() {
             $('#marker').animate( {opacity: 0, top: '0'}, 0);
             $('#answer').fadeOut(150, function() {
                 $('#question').fadeIn(150);
+                $('#input-location').focus();
             });
         }
     });
@@ -52,8 +49,8 @@ $(document).ready(function() {
 });
 
 function makeMap() {
-    var mapTileset = cdb.layers[0].options.urlTemplate;
 
+/*
     var map = L.map('map', { 
         center: new L.LatLng(36.18, -115.14),
         zoom: 12,
@@ -64,10 +61,29 @@ function makeMap() {
         boxZoom: false,
         keyboard: false,
         zoomControl: false
-    })
+    });
     L.tileLayer(mapTileset, {
         attribution: mapAttrib,
         maxZoom: 18
     }).addTo(map);
+    cartodb.createLayer(map, cartoJSON)
+        .done ( function(layer) {
+            console.log('CartoDB layer loaded!');
+        })
+        .on('error', function(err) {
+            console.log("some error occurred: " + err);
+        });
+*/
+    cartodb.createVis('map', cartoJSON, {
+        shareable: false,
+        title: false,
+        description: false,
+        search: false,
+        tiles_loader: true,
+        center_lat: 36.18,
+        center_lon: -115.14,
+        zoom: 12,
+        infowindow: false
+    });
 
 }

@@ -1,23 +1,13 @@
 @import "elements.less";
 
 @marker-width: 210px;
-@marker-height: (@marker-width * 1.667);
+@marker-height: (@marker-width * 5 / 3);
 
 .center-width (@width: @marker-width) {
     position: absolute;
     width: @width;
     left: 50%;
     margin-left: -(@width / 2);
-}
-
-html, body {
-    padding: 0;
-    margin: 0;
-}
-
-body {
-    font-family: Arial, sans-serif; 
-    overflow: hidden;
 }
 
 #ribbon {
@@ -77,15 +67,18 @@ body {
     cursor: default !important;
 }
 
-.input-btn-large {
-    padding: 11px 17px !important;
-}
+// Responsive tweaks to Bootstrap
+@media all {
 
-
-@media only screen and (max-width: 767px) {
-
-    body {
+    html, body {
         padding: 0 !important;
+        margin: 0;
+    }
+    body {
+        font-family: Arial, sans-serif; 
+    }
+    #input-location {
+        padding: 11px 17px !important;
     }
 
 }
