@@ -1,6 +1,9 @@
 var cartoJSON = 'http://cfa.cartodb.com/api/v1/viz/25045/viz.json';
 var mapAttrib = 'CartoDB <a href="http://cartodb.com/attributions">attribution</a>, &copy;2012 Nokia <a href="http://here.net/services/terms">Terms of use</a>';
 var cartoObject = {};       // note: don't use variable 'cdb' it is reserved by cartoDB
+var map,
+    mapLatLng = new L.LatLng(36.18, -115.14),
+    mapZoom = 12;
 
 $(document).ready(function() {
 
@@ -32,16 +35,20 @@ $(document).ready(function() {
         $('#question').fadeOut(250, function() {
             $('#answer').fadeIn(250);
         });
+        // Zoom to sample location - should feed in actual geo coordinates
+        map.setView( new L.LatLng(36.20, -115.18), 14);
     })
 
     $(document).keydown(function (e) {
         // Press Escape to reset
         if (e.which == 27 && e.ctrlKey == false && e.metaKey == false) {
             $('#marker').animate( {opacity: 0, top: '0'}, 0);
+            $('#alert').hide();
             $('#answer').fadeOut(150, function() {
                 $('#question').fadeIn(150);
                 $('#input-location').focus();
             });
+            map.setView(mapLatLng, mapZoom);
         }
     });
 
@@ -49,10 +56,9 @@ $(document).ready(function() {
 
 function makeMap() {
 
-/*
-    var map = L.map('map', { 
-        center: new L.LatLng(36.18, -115.14),
-        zoom: 12,
+    map = L.map('map', { 
+        center: mapLatLng,
+        zoom: mapZoom,
         dragging: false,
         touchZoom: false,
         scrollWheelZoom: false,
@@ -63,7 +69,7 @@ function makeMap() {
     });
     L.tileLayer(mapTileset, {
         attribution: mapAttrib,
-        maxZoom: 18
+        maxZoom: 15
     }).addTo(map);
     cartodb.createLayer(map, cartoJSON)
         .done ( function(layer) {
@@ -72,7 +78,7 @@ function makeMap() {
         .on('error', function(err) {
             console.log("some error occurred: " + err);
         });
-*/
+/*
     cartodb.createVis('map', cartoJSON, {
         shareable: false,
         title: false,
@@ -84,5 +90,6 @@ function makeMap() {
         zoom: 12,
         infowindow: false
     });
+*/
 
 }
