@@ -27,36 +27,38 @@
 </head>
 <body>
 
-    <section id="ribbon">
-        <section id="question">
+    <div id="ribbon">
+        <section id="question" class="span12 center">
             <h1>Am I in Las Vegas?</h1>
-            <section id="alert" class="alert alert-error input-xxlarge">
+            <div id="alert" class="alert alert-error span6 center">
                 <button type="button" class="close">&times;</button>
                 <strong>Error!</strong> Could not find this location.
-            </section>
-            <form class="form-inline">
-                <fieldset>
-                    <div class="input-prepend input-append">
-                        <button id="input-target" type="button" class="btn btn-large btn-primary"><img src="img/target.png"></button>
-                        <input id="input-location" type="text" placeholder="Enter a location or click target to get location" class="input-xxlarge">
-                        <button id="input-go" type="button" class="btn btn-large btn-primary">Go</button>
-                    </div>
-                </fieldset>
-            </form>
+            </div>
+            <div class="span12 center">
+                <form class="form-inline">
+                    <fieldset>
+                        <div class="input-prepend input-append">
+                            <button id="input-target" type="button" class="btn btn-large btn-primary"><img src="img/target.png"></button>
+                            <input id="input-location" type="text" placeholder="Enter a location or click target to get location" class="input-xxlarge">
+                            <button id="input-go" type="button" class="btn btn-large btn-primary">Go</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
         </section>
 
         <section id="answer">NO</section>
 
         <section id='pi'><a target='_blank' href='http://codeforamerica.org/2013-partners/las-vegas/'><img src='img/cfa_flag.png' alt='Code for America flag'></a></section>
-    </section>
+    </div>
 
-    <section id="marker">
+    <div id="marker">
         <object id="marker-svg" type="image/svg+xml" data="img/marker.svg">
             <img src="img/marker.png" alt="marker" width="210" height="350" />
         </object>
-    </section>
+    </div>
 
-    <section id="map"></section>
+    <div id="map"></div>
 
     <!-- SITE JAVASCRIPT -->
     <!--

@@ -1,7 +1,6 @@
 var cartoJSON = 'http://cfa.cartodb.com/api/v1/viz/25045/viz.json';
 var mapAttrib = 'CartoDB <a href="http://cartodb.com/attributions">attribution</a>, &copy;2012 Nokia <a href="http://here.net/services/terms">Terms of use</a>';
-var cartoObject = {};
-// note: don't use variable 'cdb' it is reserved by cartoDB
+var cartoObject = {};       // note: don't use variable 'cdb' it is reserved by cartoDB
 
 $(document).ready(function() {
 

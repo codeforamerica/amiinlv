@@ -9,6 +9,12 @@
     left: 50%;
     margin-left: -(@width / 2);
 }
+.center {
+    // hack to center bootstrap spanX's
+    float: none !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
 
 #ribbon {
     position: absolute;
@@ -26,9 +32,8 @@
             font-size: 50pt;
             line-height: 50pt;
         }
-        .alert {
+        #alert {
             display: none;
-            margin: 0 auto 20px auto;
         }
     }
     #answer {
