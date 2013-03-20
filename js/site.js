@@ -30,14 +30,25 @@ $(document).ready(function() {
         $('#alert').slideUp(200);
     });
 
-    $('#marker').css('display', 'block');
-    $('#marker').animate({ opacity: 0 }, 0);
     $('#input-go').click(function() {
+        $('#marker').css('display', 'block');
+        $('#marker').animate({ opacity: 0 }, 0);
         $('#marker').animate( {opacity: 1, top: '200'}, 250);
         $('#question').fadeOut(250, function() {
             $('#answer').fadeIn(250);
         });
     })
+
+    $(document).keydown(function (e) {
+        // Press Escape to reset
+        if (e.which == 27 && e.ctrlKey == false && e.metaKey == false) {
+            $('#marker').animate( {opacity: 0, top: '0'}, 0);
+            $('#answer').fadeOut(150, function() {
+                $('#question').fadeIn(150);
+            });
+        }
+    });
+
 });
 
 function makeMap() {
