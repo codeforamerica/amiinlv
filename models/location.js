@@ -69,7 +69,7 @@ Location.check = function ( latitude, longitude, callback ) {
       location._setWithinLimits( cb )
     },
 
-    function ( cb ) {
+    function ( err ) {
       callback( location )
     }
 
