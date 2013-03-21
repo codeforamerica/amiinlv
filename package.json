@@ -1,0 +1,16 @@
+{
+    "name": "ami_in_vegas",
+    "description": "Am I in Las Vegas Application",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "async": "0.2.6",
+        "express": "3.x",
+        "geocoder": "0.1.0",
+        "request": "2.16.6"
+    },
+    "engines": {
+        "node": "0.10.0",
+        "npm": "1.1.49"
+    }
+}
