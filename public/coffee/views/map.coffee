@@ -11,8 +11,7 @@ class App.Views.Map extends Backbone.View
   attribution: "CartoDB <a href='http://cartodb.com/attributions'>attribution</a>, &copy;2012 Nokia <a href='http://here.net/services/terms'>Terms of use</a>"
 
   zoom: 12
-
-
+  setZoom: 14
 
   initialize: () ->
     center = new L.LatLng(@origin.latitude, @origin.longitude)
@@ -52,7 +51,7 @@ class App.Views.Map extends Backbone.View
     latitude  = userLocation.get("latitude")
     longitude = userLocation.get("longitude")
     location  = new L.LatLng( latitude, longitude )
-    @map.setView(location, 14)
+    @map.setView(location, @setZoom)
 
   createMap: (data) ->
     tileset = data.layers[0].options.urlTemplate
