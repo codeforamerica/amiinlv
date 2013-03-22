@@ -52,7 +52,7 @@ class App.Views.Map extends Backbone.View
     latitude  = userLocation.get("latitude")
     longitude = userLocation.get("longitude")
     location  = new L.LatLng( latitude, longitude )
-    @map.setView(location, @zoom)
+    @map.setView(location, 14)
 
   createMap: (data) ->
     tileset = data.layers[0].options.urlTemplate
