@@ -22,3 +22,10 @@ class App.Views.Main extends Backbone.View
   displayAnswer: (answer) ->
     @question.hide _.bind((() -> @answer.show(answer)), @)
     @map.refreshLocation()
+
+  # Press Escape to reset
+  $(document).keydown (e) ->
+    if e.which is 27 and e.ctrlKey is false and e.metaKey is false
+      @answer.hide
+      @question.show
+      @map.resetLocation

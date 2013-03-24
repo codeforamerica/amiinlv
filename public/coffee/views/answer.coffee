@@ -13,7 +13,8 @@ class App.Views.Answer extends Backbone.View
     @$el.fadeIn(250)
 
   hide: () ->
-    $(@marker).css("display", "none")
+    @$marker.animate({ opacity: 0, top: "0" }, 0);
+    @$el.fadeOut(150)
 
   drop: () ->
     $(@marker).animate({ opacity: 0 }, 0)

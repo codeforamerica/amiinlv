@@ -27,3 +27,6 @@ class App.Views.Question extends Backbone.View
 
   hide: (callback) ->
     @$el.fadeOut(250, callback)
+
+  show: ->
+    @$el.fadeIn(150)
