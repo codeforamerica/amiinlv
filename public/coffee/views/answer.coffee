@@ -11,7 +11,6 @@ class App.Views.Answer extends Backbone.View
     @$marker.css("display", "block")
     @$marker.animate({ opacity: 1, top: "250" }, 250)
     @$el.fadeIn(250)
-    $("#input-location").focus()
 
   hide: () ->
     $(@marker).css("display", "none")

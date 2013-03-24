@@ -11,6 +11,8 @@ class App.Views.Main extends Backbone.View
     userLocation.on "location:withinlimits",  _.bind(@onWithinLimits, @)
     userLocation.on "location:outsidelimits", _.bind(@onOutsideLimits, @)
 
+    $("#input-location").focus()
+
   onWithinLimits: () ->
     @displayAnswer("Yes")
 
