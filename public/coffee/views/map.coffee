@@ -41,7 +41,7 @@ class App.Views.Map extends Backbone.View
       user_name:  "cfa"
       table_name: "clv_boundary"
       query:      "SELECT * FROM {{table_name}}"
-      tile_style: "\#{{table_name}}{ polygon-fill: red; polygon-opacity: 0.07; line-width: 1; line-color: #FFF;line-opacity: 1;polygon-comp-op: multiply;}"
+      tile_style: "\#{{table_name}}{ polygon-fill: #F11; polygon-opacity: 0.1; line-width: 2; line-color: #F99; line-opacity: 1; line-dasharray: 3,4; polygon-comp-op: multiply;}"
 
     cartoLayer = new L.CartoDBLayer cartoAttributes
 
