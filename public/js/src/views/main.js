@@ -13,7 +13,7 @@ window.App.Views.Main = Backbone.View.extend({
   },
 
   render: function () {
-    $("#header").html(ich.header({ name: App.Config.app.name }))
+    $("#header").html(ich.header({ name: App.Config.app.name }));
   },
 
   onWithinLimits: function () {
@@ -41,11 +41,11 @@ window.App.Views.Main = Backbone.View.extend({
   _setListeners: function () {
     var withinLimits  = _.bind(this.onWithinLimits,  this),
         outsideLimits = _.bind(this.onOutsideLimits, this);
-    
+
     userLocation.on("location:withinlimits",  withinLimits);
     userLocation.on("location:outsidelimits", outsideLimits);
 
-    return false;       
+    return false;
   }
 
 });

@@ -3,7 +3,7 @@ window.App.Views.Map = Backbone.View.extend({
   el: "#map",
 
   initialize: function () {
-    cartodb.createVis(this.$el, App.Config.mapURL, {
+    cartodb.createVis(this.$el, App.Config.map.url, {
       center_lat:   App.Config.map.latitude,
       center_lon:   App.Config.map.longitude,
       zoom:         App.Config.map.initialZoom,
@@ -17,17 +17,17 @@ window.App.Views.Map = Backbone.View.extend({
   },
 
   render: function () {
-    this._setLocation(this._currentUserLocation());
-    return false;
+    this._setLocation(this._currentUserLocation(), App.Config.map.finalZoom);
+    return true;
   },
 
   reset: function () {
-    this._setLocation(this._defaultLocation());
-    return false;
+    this._setLocation(this._defaultLocation(), App.Config.map.initialZoom);
+    return true;
   },
 
-  _setLocation: function (newLocation) {
-    this.map.setView(newLocation, App.Config.map.finalZoom);
+  _setLocation: function (newLocation, zoom) {
+    this.map.setView(newLocation, zoom);
     return false;
   },
 

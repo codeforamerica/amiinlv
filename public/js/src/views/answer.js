@@ -28,7 +28,7 @@ window.App.Views.Answer = Backbone.View.extend({
       opacity: 0,
       top: "0"
     }, 0);
-    
+
     this.$el.fadeOut(150);
 
     return false;

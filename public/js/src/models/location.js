@@ -37,7 +37,7 @@ window.App.Models.Location = Backbone.Model.extend({
     this.fetch({
       data: {
         latitude:  position.coords.latitude,
-        longitude: position.coords.longitude 
+        longitude: position.coords.longitude
       }
     });
 
@@ -50,10 +50,10 @@ window.App.Models.Location = Backbone.Model.extend({
     if (geolocator) {
       var success = _.bind(this.fetchByCurrentLocation, this),
           failure = _.bind(this._onGetCurrentLocationFailure, this);
-      geolocator.getCurrentPosition(success, failure)
+      geolocator.getCurrentPosition(success, failure);
     } else {
       // TODO: do something meaningful here 
-      console.log("Browser does not support geolocation")
+      console.log("Browser does not support geolocation");
     }
 
     return this;
@@ -67,9 +67,9 @@ window.App.Models.Location = Backbone.Model.extend({
 
   _onChange: function () {
     if (this.get("withinLimits")) {
-      this.trigger("location:withinlimits")
+      this.trigger("location:withinlimits");
     } else {
-      this.trigger("location:outsidelimits")
+      this.trigger("location:outsidelimits");
     }
     return false;
   }

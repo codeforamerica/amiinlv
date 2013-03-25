@@ -9,7 +9,7 @@ window.App.Views.Question = Backbone.View.extend({
   },
 
   hide: function (callback) {
-    this.$el.fadeOut(250, callback)
+    this.$el.fadeOut(250, callback);
     return false;
   },
 
