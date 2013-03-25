@@ -13,7 +13,7 @@ window.App.Views.Main = Backbone.View.extend({
   },
 
   render: function () {
-    $("#header").html(ich.header({ name: App.Config.name }))
+    $("#header").html(ich.header({ name: App.Config.app.name }))
   },
 
   onWithinLimits: function () {
