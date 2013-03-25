@@ -20,7 +20,7 @@ jQuery(function() {
   if ($("#main").length > 0) {
     window.userLocation = new App.Models.Location();
     window.view         = new App.Views.Main();
-    return false;
+    window.view.render();
   }
 });
 

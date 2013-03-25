@@ -12,6 +12,10 @@ window.App.Views.Main = Backbone.View.extend({
     $("#input-location").focus();
   },
 
+  render: function () {
+    $("#header").html(ich.header({ name: App.Config.name }))
+  },
+
   onWithinLimits: function () {
     this.displayAnswer("yes");
     return false;

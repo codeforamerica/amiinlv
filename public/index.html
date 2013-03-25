@@ -15,13 +15,14 @@
       <div id='ribbon'>
         <div id='alert'></div>
         <div id='question'>
-          <h1>Am I in Las Vegas?</h1>
+          <div id='header'>
+          </div>
           <form>
             <div class='input-append input-prepend'>
               <a class='btn' href='#' id='input-target'>
                 <img src='img/target.png'>
               </a>
-              <input class='input-xxlarge' id='input-location' placeholder='495 S. Las Vegas Blvd, Las Vegas NV' type='text'>
+              <input id='input-location' placeholder='495 S. Las Vegas Blvd, Las Vegas NV' type='text'>
               <a class='btn' href='#' id='input-go'>Go</a>
             </div>
           </form>
@@ -49,6 +50,9 @@
     </script>
     <script id='answer' type='text/html'>
       <h1>{{ answer }}</h1>
+    </script>
+    <script id='header' type='text/html'>
+      <h1>Am I in {{ name }}?</h1>
     </script>
     <!-- / Javascripts -->
     <script src='//code.jquery.com/jquery-latest.min.js'></script>

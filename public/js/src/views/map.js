@@ -4,10 +4,11 @@ window.App.Views.Map = Backbone.View.extend({
 
   initialize: function () {
     cartodb.createVis(this.$el, App.Config.mapURL, {
-      tiles_loader: true,
       center_lat:   App.Config.initialLatitude,
       center_lon:   App.Config.initialLongitude,
-      zoom:         App.Config.initialZoom
+      zoom:         App.Config.initialZoom,
+      zoomControl:  false,
+      cartodb_logo: false
     }).done(
       _.bind(function (vis, layers) { this.map = vis.getNativeMap(); }, this)
     ).error(
