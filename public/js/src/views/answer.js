@@ -15,7 +15,7 @@ window.App.Views.Answer = Backbone.View.extend({
 
     this.$marker.animate({
       opacity: 1,
-      top:     "250"
+      top: "250"
     }, 250);
 
     this.$el.fadeIn(250);

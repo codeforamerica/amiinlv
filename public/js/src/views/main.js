@@ -10,6 +10,8 @@ window.App.Views.Main = Backbone.View.extend({
     this.answer   = new App.Views.Answer();
 
     $("#input-location").focus();
+
+    $(document).bind("keyup", _.bind(this.onKeyUp, this));
   },
 
   render: function () {
@@ -34,6 +36,14 @@ window.App.Views.Main = Backbone.View.extend({
     this.map.render();
 
     return false;
+  },
+
+  onKeyUp: function (e) {
+    if (e.keyCode == 27) {
+      this.answer.hide();
+      this.question.show();
+      this.map.reset();
+    }
   },
 
   // private
