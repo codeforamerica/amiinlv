@@ -43,6 +43,7 @@ window.App.Views.Main = Backbone.View.extend({
       this.answer.hide();
       this.question.show();
       this.map.reset();
+      $("#input-location").focus().select();
     }
   },
 
