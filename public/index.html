@@ -1,23 +1,33 @@
 <html class='no-js' lang='en'>
+
   <head>
     <meta charset='utf-8'>
     <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
     <title>Am I In Las Vegas?</title>
     <meta content='' name='description'>
     <meta content='width=device-width, initial-scale=1.0' name='viewport'>
+
     <link href='css/application.css' rel='stylesheet'>
-    <link href='http://cdn.leafletjs.com/leaflet-0.5/leaflet.css' rel='stylesheet'>
-    <link href='http://libs.cartocdn.com/cartodb.js/v2/themes/css/cartodb.css' rel='stylesheet'>
-    <script src='js/polyfills.js'></script>
+    <link href='css/vendor/bootstrap.min.css' rel='stylesheet'>
+    <link href='css/vendor/bootstrap-responsive.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
+    <!--[if lte IE 8]>
+      <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.ie.css" />
+    <![endif]-->
+
   </head>
+
   <body>
     <div id='main' role='main'>
       <div id='ribbon'>
         <div id='alert'></div>
         <div id='question'>
+
           <div id='header'>
+            <h1>Am I in Las Vegas?</h1>
           </div>
-          <form>
+
+          <form id="location-form">
             <div class='input-append input-prepend'>
               <a class='btn' href='#' id='input-target'>
                 <img src='img/target.png'>
@@ -26,40 +36,36 @@
               <a class='btn' href='#' id='input-go'>Go</a>
             </div>
           </form>
+
         </div>
-        <section id='pi'>
+
+        <div id='pi'>
           <a href='https://github.com/codeforamerica/amiinlv/' target='_blank'>
             <img alt='Code for America flag' src='img/cfa_flag.png'>
           </a>
-        </section>
-        <div id='answer'></div>
+        </div>
+
+        <div id='answer'>
+          <h1></h1>
+        </div>
       </div>
+
       <div id='marker'>
         <object data='img/marker.svg' id='marker-svg' type='image/svg+xml'>
           <img alt='marker' height='350' src='img/marker.png' width='210'>
         </object>
       </div>
+
       <div id='map'></div>
     </div>
-    <!-- / Templates -->
-    <script id='alert' type='text/html'>
-      <button class='close' type='button'>
-        &times;
-        <span>{{ message }}</span>
-      </button>
-    </script>
-    <script id='answer' type='text/html'>
-      <h1>{{ answer }}</h1>
-    </script>
-    <script id='header' type='text/html'>
-      <h1>Am I in {{ name }}?</h1>
-    </script>
+
     <!-- / Javascripts -->
     <script src='//code.jquery.com/jquery-latest.min.js'></script>
     <script>
-      window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+      window.jQuery || document.write('<script src="js/vendor/jquery.min.js"><\/script>')
     </script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
     <script src='js/application.js'></script>
-    <script src='http://libs.cartocdn.com/cartodb.js/v2/cartodb.js'></script>
+
   </body>
 </html>

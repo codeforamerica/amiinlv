@@ -1,16 +1,28 @@
 {
-    "name": "amiiv",
-    "description": "Am I in Las Vegas Application",
-    "version": "0.0.1",
-    "private": true,
-    "dependencies": {
-      "async": "0.2.6",
-      "cartodb": "0.1.0",
-      "express": "3.x",
-      "geocoder": "0.1.0"
-    },
-    "engines": {
-      "node": "0.8.x",
-      "npm": "1.1.x"
-    }
+  "name":    "AMIINLV",
+  "main":    "index.js",
+  "version": "0.0.0",
+
+  "repository": {
+    "type":"git",
+    "url": "git@github.com:codeforamerica/amiinlv.git"
+  },
+
+  "dependencies": {
+    "express": "3.x",
+    "geocoder": "0.1.0",
+    "geojson-utils": "git://github.com/rclosner/geojson-js-utils.git#pip"
+  },
+
+  "engines": {
+    "node": "0.8.x",
+    "npm": "1.1.x"
+  },
+
+  "scripts": {
+    "start": "node server.js",
+    "make":  "browserify src/application.js > public/js/application.js",
+    "watch": "browserify src/application.js -o public/js/application.js --watch --debug"
+  }
+
 }
