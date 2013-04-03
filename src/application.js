@@ -31,6 +31,9 @@ function init (data) {
 }
 
 function render () {
+  $("head title").html("Am I in " + config.name);
+  $("#header h1").html("Am I in " + config.name);
+  $("#input-location").attr("placeholder", config.address);
   $("#input-location").focus();
   map.render();
 }

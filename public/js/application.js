@@ -28,6 +28,8 @@ module.exports = getCurrentLocation;
 
 },{}],3:[function(require,module,exports){
 var config = {
+  name: "Las Vegas",
+  address: "495 S. Las Vegas Blvd. Las Vegas, NV 89101",
   latitude: 36.18,
   longitude: -115.14,
   initialZoom: 12,
@@ -137,6 +139,9 @@ function init (data) {
 }
 
 function render () {
+  $("head title").html("Am I in " + config.name);
+  $("#header h1").html("Am I in " + config.name);
+  $("#input-location").attr("placeholder", config.address);
   $("#input-location").focus();
   map.render();
 }
