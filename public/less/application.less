@@ -1,0 +1,252 @@
+@import 'preboot.less';
+@import 'normalize.less';
+
+// VARIABLES
+
+@plaque-color:    rgba(255, 255, 72, 0.9);
+
+// TYPOGRAPHY PRESETS
+
+@font-face {
+    font-family: 'UbuntuTitling';
+    src: url('../fonts/UbuntuTitling-Bold-webfont.eot');
+    src: url('../fonts/UbuntuTitling-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/UbuntuTitling-Bold-webfont.woff') format('woff'),
+         url('../fonts/UbuntuTitling-Bold-webfont.ttf') format('truetype'),
+         url('../fonts/UbuntuTitling-Bold-webfont.svg#UbuntuTitlingBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+// MAIN LAYOUT
+html, body {
+  background-color: #eee;
+  font-family: 'UbuntuTitling', 'Arial', sans-serif !important;
+  font-size: 14px;
+  overflow: hidden;
+}
+
+#ui-container {
+  position: absolute;
+  top: 15%;
+  width: 100%;
+  z-index: 10;  
+}
+
+#plaque {
+  position: relative;
+  margin: 0 auto;
+  width: 690px;   // width of sawtooth means this should be a multiple of 15
+  padding: 15px;
+  box-sizing: border-box;
+  background-color: @plaque-color;
+  text-align: center;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  &:after {
+    position: absolute;
+    content: '';
+    display: block;
+    background: url('../img/sawtooth.png') repeat-x;
+    // it ain't perfect, but it's probably pretty okay for now.
+    .opacity(0.86);
+    width: 100%;
+    height: 10px;
+    bottom: -10px;
+    left: 0;
+  }
+}
+
+h1, h2 {
+  margin: 10px 0;
+  padding: 0;
+  font-family: 'UbuntuTitling', 'Arial', sans-serif;
+  font-weight: normal;
+  text-shadow: 2px 2px 0px rgba(227,227,227,1);
+  text-transform: uppercase;
+  color: #333;
+  white-space: nowrap;
+}
+#question{
+  display: block;
+  position: relative;
+  #header {
+    position: relative;
+    top: -100px;
+    // background-color: white;
+    // width: 65%;
+    margin: 0 auto;
+    padding: 0;
+    // border: 1px dashed black;
+    background: transparent url('../img/white_shield.png') center top no-repeat;
+    width: 660px;
+    height: 340px;
+    // border-radius: 10px;
+    /*
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 40% 45%;
+    border-bottom-right-radius: 40% 45%;
+    box-shadow: 0 0 0 10px white, 0 0 10px 8px rgba(0,0,0,0.5);
+    */
+    h1 {
+      font-size: 96px;
+    }
+    h2 {
+      font-size: 44px;
+      padding-top: 60px;
+      &:before, &:after {
+        position: absolute;
+        content: '';
+        display: block;
+        width: 120px;
+        border-top: 4px double black;
+      }
+      &:before {
+        left: 15%;
+        margin-top: 16px;
+      }
+      &:after {
+        right: 15%;
+        margin-top: -28px;
+      }
+    }
+    p {
+      width: 240px;
+      margin: 0 auto;
+    }
+  }
+}
+
+#answer {
+  display: none;
+  position: relative;
+  top: -150px;
+  margin: 0 auto;
+  background: transparent url('../img/yellow_arrow.png') center top no-repeat;
+  width: 275px;
+  height: 306px;
+  text-align: center;
+  h1 {
+    padding-top: 40px;
+    font-size: 130px;
+    text-transform: uppercase;
+    margin-bottom: 0;
+  }
+  p {
+    width: 200px;
+    font-size: 28px;
+    line-height: 120%;
+    margin: 0 auto;
+  }
+}
+
+#location-form {
+  margin-top: -100px;
+  font-size: 20px;
+  p:nth-child(3) {
+    height: 40px;
+    width: 425px;
+    margin: 20px auto 0;
+    text-align: center;
+  }
+  margin-bottom: 30px;
+}
+#help {
+  clear: both;
+  margin: 10px auto;
+  a {
+    color: black;
+  }
+}
+
+.btn {
+  background-color: black;
+  border-radius: 20px;
+  height: 40px;
+  line-height: 40px;
+  width: 350px;
+  display: block;
+  color: white;
+  text-decoration: none;
+  font-weight: normal;
+  text-transform: uppercase;
+  margin: 10px auto;
+  font-size: 20px;
+}
+.round {
+  background-color: white;
+  height: 40px;
+  border-radius: 20px;
+  color: black;
+  width: 40px;
+  margin: 0 auto;
+  line-height: 40px;
+  text-transform: uppercase;
+}
+
+#input-location {
+  height: 40px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  .box-shadow(inset 0 0 16px rgba(0,0,0,0.2));
+  border: 0;
+  padding: 0 20px;
+  width: 280px;
+  &:hover, &:focus {
+      outline: none;
+  }
+  float: left;
+}
+#input-go {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  float: left;
+  width: 120px;
+  margin-top: 0px;
+  margin-left: -20px;
+}
+
+#about {
+  width: 650px;
+  margin: 0 auto;
+  display: none;
+  clear: both;
+  .btn {
+    width: 150px;
+  }
+}
+
+#marker {
+  display: none;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  width: 210px;
+  left: 50%;
+  margin-left: -110px;
+  z-index: 20;
+}
+#marker-svg {
+  height: 350px;
+  width: 210px;
+}
+#map {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -100;
+  cursor: default;
+}
+
+#pi {
+  display: none;
+  position: absolute;
+  right: 10px;
+  bottom: 15px;
+  width: 32px;
+  height: 8px;
+}
+
+
