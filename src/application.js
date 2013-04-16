@@ -33,10 +33,12 @@ function init (data) {
 }
 
 function render () {
-  $("head title").html("Am I in " + config.name);
-  $("#header h1").html(config.name + '?');
-  $("#input-location").attr("placeholder", config.address);
-  $("#input-location").focus();
+  $('head title').html('Am I in ' + config.name);
+  $('#header h1').html(config.name + '?');
+  $('#header p').html(config.tagline);
+  $('#about p:first').html(config.about);
+  $('#input-location').attr('placeholder', config.address);
+  $('#input-location').focus();
   map.render();
 }
 
