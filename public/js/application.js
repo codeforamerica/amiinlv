@@ -835,7 +835,8 @@ module.exports = getCurrentLocation;
 require.define("/src/map.js",function(require,module,exports,__dirname,__filename,process,global){var config = require("../config");
 var MAP_ATTRIBUTION = "©2012 Nokia <a href=\"http://here.net/services/terms\">Terms of Use</a>"
 
-var TILE_LAYER_URL  = "https://maps.nlp.nokia.com/maptiler/v2/maptile/newest/normal.day/{z}/{x}/{y}/256/png8?lg=eng&token=61YWYROufLu_f8ylE0vn0Q&app_id=qIWDkliFCtLntLma2e6O"
+// var TILE_LAYER_URL  = "https://maps.nlp.nokia.com/maptiler/v2/maptile/newest/normal.day/{z}/{x}/{y}/256/png8?lg=eng&token=61YWYROufLu_f8ylE0vn0Q&app_id=qIWDkliFCtLntLma2e6O"
+var TILE_LAYER_URL = 'http://tile.stamen.com/toner/{z}/{x}/{y}.png';
 
 var REGION_LAYER_STYLE ={
   color: "#F11",
@@ -946,11 +947,13 @@ function init (data) {
   $(document).keydown(function (e) {
     if (e.which == 27 && e.ctrlKey == false && e.metaKey == false) reset();
   });
+  $('#about-link').on('click', aboutOpen);
+  $('#about-close').on('click', aboutClose);
 }
 
 function render () {
   $("head title").html("Am I in " + config.name);
-  $("#header h1").html("Am I in " + config.name);
+  $("#header h1").html(config.name + '?');
   $("#input-location").attr("placeholder", config.address);
   $("#input-location").focus();
   map.render();
@@ -976,10 +979,21 @@ function reset () {
  */
 
 function setAnswer (answer) {
+  // Reset #answer to block element so animation will work
+  $('#answer').show().animate({opacity: 0, top: '-150px'}, 0);
   $('#question').fadeOut(250, function() {
-    $('#answer').fadeIn(250);
+    $('#answer').animate({opacity: 1, top: '0'}, 150);
   });
-  $("#answer h1").html(answer)
+  $('#answer h1').html(answer);
+
+  // Include a message providing further information.
+  // Currently, it's just a simple restatement of the
+  // answer.  See GitHub issue #6.
+  if (answer == "Yes") {
+    $('#answer p').html('You are within city limits!');
+  } else {
+    $('#answer p').html('You are not in Las Vegas!')
+  }
 
   map.createMarker(latitude, longitude)
   map.setLocation(latitude, longitude, config.finalZoom);
@@ -1085,6 +1099,30 @@ function geocodeByAddress (address) {
       checkWithinLimits(latitude, longitude);
     }
   });
+}
+
+/**
+ * Opens about window
+ */
+
+function aboutOpen () {
+  // hiding this sawtooth doesn't work right now.
+  $('#plaque:after').hide();
+  
+  $('#help').hide();
+  $('#question').animate({top: '-100px'}, 250);
+  $('#about').slideDown(250);
+}
+
+/**
+ * Closes about window
+ */
+
+function aboutClose () {
+  $('#about').slideUp(250, function() {
+      $('#help').slideDown(0);
+  });
+  $('#question').animate({top: '0'}, 250);
 }
 
 /**
