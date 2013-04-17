@@ -861,6 +861,14 @@ var Map = function (json) {
   this.markers = [];
 }
 
+var markerIcon = L.icon({
+    iconUrl: '../img/marker.svg',
+
+    iconSize:     [36, 42], // size of the icon
+    iconAnchor:   [18, 42], // point of the icon which will correspond to marker's location
+    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
+
 Map.prototype.render = function () {
   L.tileLayer(TILE_LAYER_URL, {
     attribution: MAP_ATTRIBUTION,
@@ -885,7 +893,7 @@ Map.prototype.setLocation = function (lat, lng, zoom) {
 }
 
 Map.prototype.createMarker = function (lat, lng) {
-  var marker = L.marker([lat, lng]).addTo(this.map);
+  var marker = L.marker([lat, lng], {icon: markerIcon}).addTo(this.map);
   this.markers.push(marker);
   return true;
 }
