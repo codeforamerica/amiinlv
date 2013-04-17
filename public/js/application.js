@@ -916,8 +916,8 @@ require.define("/config.js",function(require,module,exports,__dirname,__filename
   name: "Las Vegas",
   address: "495 S. Las Vegas Blvd",
   latitude: 36.18,
-  longitude: -115.14,
-  initialZoom: 12,
+  longitude: -115.18,
+  initialZoom: 13,
   finalZoom: 14,
   fileName: "/data/region.geojson",
   tagline: "Because the city boundaries are a lot weirder than you think.",
@@ -981,7 +981,6 @@ function init (data) {
         break;
       }
     default:
-      console.log('resetting');
       reset();
   }
 
