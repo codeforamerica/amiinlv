@@ -29,9 +29,12 @@ var Map = function (json) {
 
 var markerIcon = L.icon({
     iconUrl: '../img/marker.svg',
+//    shadowUrl: '../img/marker_shadow.png',
 
     iconSize:     [36, 42], // size of the icon
+//    shadowSize:   [62, 32], 
     iconAnchor:   [18, 42], // point of the icon which will correspond to marker's location
+//    shadowAnchor: [18, 29],
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
 
