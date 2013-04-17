@@ -30,6 +30,30 @@ function init (data) {
   });
   $('#about-link').on('click', aboutOpen);
   $('#about-close').on('click', aboutClose);
+  $('#answer-back').on('click', reset);
+
+  // Looks for what to do based on URL
+  // incomplete. -louh
+  var q = window.location.search.substr(1);
+  switch(q) {
+    case 'about':
+      aboutOpen();
+      break;
+    case 'locate':
+      onGetCurrentLocation();
+      break;
+    case 'find':
+      // /find=x where x is the address to geocode
+      // this is totally broken because switch case matching isn't done on partial string
+      var findgeo = q.substr(q.indexOf('='));
+      if (findgeo) {
+        geocodeByAddress(findgeo);        
+        break;
+      }
+    default:
+      reset();
+  }
+
 }
 
 function render () {
@@ -49,6 +73,7 @@ function render () {
 function reset () {
   $("#input-location").val("")
   $('#alert').hide();
+  aboutClose();
   $('#answer').fadeOut(150, function() {
     $('#question').fadeIn(150);
     $('#input-location').focus();

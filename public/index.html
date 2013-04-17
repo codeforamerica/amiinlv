@@ -11,10 +11,6 @@
     <!-- <link href='css/application.css' rel='stylesheet'> -->
     <link href='less/application.less' rel="stylesheet/less" type="text/css" />
     <script src='js/vendor/less-1.3.3.min.js' type='text/javascript'></script>
-    <!--
-    <link href='css/vendor/bootstrap.min.css' rel='stylesheet'>
-    <link href='css/vendor/bootstrap-responsive.min.css' rel='stylesheet'>
-    // -->
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
     <!--[if lte IE 8]>
       <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.ie.css" />
@@ -26,8 +22,7 @@
     <div id='main' role='main'>
 
 
-    <section id='ui-container'>
-
+    <section id='question-wrapper'>
         <section id='question'>
           <div id='plaque'>
 
@@ -65,20 +60,21 @@
             </div>
           </div>
         </section>
-
-        <div id='pi'>
-          <a href='https://github.com/codeforamerica/amiinlv/' target='_blank'>
-            <img alt='Code for America flag' src='img/cfa_flag.png'>
-          </a>
-        </div>
-
       </section>
 
       <section id='answer-wrapper'>
         <section id='answer'>
+          <a id='answer-back'>⬅</a>
           <h1></h1>
           <p></p>
         </section>
+      </section>
+
+      <!-- currently hidden from view until we figure out where to put it -->
+      <section id='pi'>
+        <a href='https://github.com/codeforamerica/amiinlv/' target='_blank'>
+          <img alt='Code for America flag' src='img/cfa_flag.png'>
+        </a>
       </section>
 
       <section id='map'></section>
