@@ -833,11 +833,10 @@ module.exports = getCurrentLocation;
 });
 
 require.define("/src/map.js",function(require,module,exports,__dirname,__filename,process,global){var config = require("../config");
-//var MAP_ATTRIBUTION = "©2012 Nokia <a href=\"http://here.net/services/terms\">Terms of Use</a>"
 var MAP_ATTRIBUTION = 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.'
-
-//var TILE_LAYER_URL  = "https://maps.nlp.nokia.com/maptiler/v2/maptile/newest/normal.day/{z}/{x}/{y}/256/png8?lg=eng&token=61YWYROufLu_f8ylE0vn0Q&app_id=qIWDkliFCtLntLma2e6O"
 var TILE_LAYER_URL = 'http://tile.stamen.com/toner/{z}/{x}/{y}.png';
+//var MAP_ATTRIBUTION = "©2012 Nokia <a href=\"http://here.net/services/terms\">Terms of Use</a>"
+//var TILE_LAYER_URL  = "https://maps.nlp.nokia.com/maptiler/v2/maptile/newest/normal.day/{z}/{x}/{y}/256/png8?lg=eng&token=61YWYROufLu_f8ylE0vn0Q&app_id=qIWDkliFCtLntLma2e6O"
 
 var REGION_LAYER_STYLE ={
   color: "#F11",
@@ -854,6 +853,7 @@ var Map = function (json) {
     scrollWheelZoom: false,
     doubleClickZoom: false,
     boxZoom: false,
+    closePopupOnClick: false,
     keyboard: false,
     zoomControl: false
   });
@@ -863,13 +863,13 @@ var Map = function (json) {
 
 var markerIcon = L.icon({
     iconUrl: '../img/marker.svg',
-//    shadowUrl: '../img/marker_shadow.png',
+    shadowUrl: '../img/marker_shadow.png',
 
     iconSize:     [36, 42], // size of the icon
-//    shadowSize:   [62, 32], 
+    shadowSize:   [100, 50], 
     iconAnchor:   [18, 42], // point of the icon which will correspond to marker's location
-//    shadowAnchor: [18, 29],
-    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+    shadowAnchor: [40, 44],
+    popupAnchor:  [0, -50] // point from which the popup should open relative to the iconAnchor
 });
 
 Map.prototype.render = function () {
@@ -888,15 +888,28 @@ Map.prototype.render = function () {
 Map.prototype.reset = function () {
   this.removeMarkers();
   this.setLocation(config.latitude, config.longitude, config.initialZoom);
+  this.map.dragging.disable();
 }
 
 Map.prototype.setLocation = function (lat, lng, zoom) {
   this.map.setView([lat, lng], zoom);
+  this.map.dragging.enable();
   return true;
 }
 
-Map.prototype.createMarker = function (lat, lng) {
-  var marker = L.marker([lat, lng], {icon: markerIcon}).addTo(this.map);
+Map.prototype.createMarker = function (lat, lng, answer, detail) {
+  var marker = L.marker([lat, lng], {
+    icon: markerIcon,
+    clickable: false
+  }).addTo(this.map);
+  var popup = L.popup({
+    autoPan: true,
+    closeButton: false,
+    autoPanPadding: [10,10]
+  })
+    .setLatLng([lat, lng])
+    .setContent('<a id="answer-back" href="javascript:reset">⬅</a><h1>' + answer + '</h1><p>' + detail + '</p>')
+    .openOn(this.map);
   this.markers.push(marker);
   return true;
 }
@@ -1007,10 +1020,10 @@ function reset () {
   $("#input-location").val("")
   $('#alert').hide();
   aboutClose();
-  $('#answer').fadeOut(150, function() {
+  //$('#answer').fadeOut(150, function() {
     $('#question').fadeIn(150);
     $('#input-location').focus();
-  });
+  //});
 
   map.reset();
 }
@@ -1021,23 +1034,34 @@ function reset () {
 
 function setAnswer (answer) {
   // Reset #answer to block element so animation will work
+  /*
   $('#answer').show().animate({opacity: 0, top: '-150px'}, 0);
   $('#question').fadeOut(250, function() {
     $('#answer').animate({opacity: 1, top: '0'}, 150);
   });
   $('#answer h1').html(answer);
+  */
 
   // Include a message providing further information.
   // Currently, it's just a simple restatement of the
   // answer.  See GitHub issue #6.
+  var detail;
   if (answer == "Yes") {
-    $('#answer p').html('You are within city limits!');
+    //$('#answer p').html('You are within city limits!');
+    detail = 'You are within city limits!'
   } else {
-    $('#answer p').html('You are not in Las Vegas!')
+    //$('#answer p').html('You are not in Las Vegas!')
+    detail = 'You are not in Las Vegas!'
   }
 
-  map.createMarker(latitude, longitude)
+  map.createMarker(latitude, longitude, answer, detail)
   map.setLocation(latitude, longitude, config.finalZoom);
+
+//  $('.leaflet-popup-content-wrapper').show().animate({opacity: 0, top: '-150px'}, 0);
+  $('#question').fadeOut(250, function() {
+//    $('.leaflet-popup-content-wrapper').animate({opacity: 1, top: '0'}, 150);
+  });
+
 }
 
 /**
