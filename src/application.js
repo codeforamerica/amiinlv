@@ -94,7 +94,8 @@ function setAnswer (answer) {
     detail = config.responseNo
   }
 
-  map.createMarker(latitude, longitude, answer, detail)
+  map.createMarker(latitude, longitude);
+  map.createPopup(latitude, longitude, answer, detail)
   map.setLocation(latitude, longitude, config.finalZoom);
 
 //  $('.leaflet-popup-content-wrapper').show().animate({opacity: 0, top: '-150px'}, 0);

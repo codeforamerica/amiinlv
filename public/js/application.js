@@ -865,9 +865,9 @@ var markerIcon = L.icon({
     iconUrl: '../img/marker.svg',
     shadowUrl: '../img/marker_shadow.png',
 
-    iconSize:     [36, 42], // size of the icon
+    iconSize:     [36, 43], // size of the icon
     shadowSize:   [100, 50], 
-    iconAnchor:   [18, 42], // point of the icon which will correspond to marker's location
+    iconAnchor:   [18, 43], // point of the icon which will correspond to marker's location
     shadowAnchor: [40, 44],
     popupAnchor:  [0, -50] // point from which the popup should open relative to the iconAnchor
 });
@@ -898,22 +898,25 @@ Map.prototype.setLocation = function (lat, lng, zoom) {
   return true;
 }
 
-Map.prototype.createMarker = function (lat, lng, answer, detail) {
+Map.prototype.createMarker = function (lat, lng) {
   var marker = L.marker([lat, lng], {
     icon: markerIcon,
     clickable: false
   }).addTo(this.map);
+  this.markers.push(marker);
+  return true;
+}
+
+Map.prototype.createPopup = function (lat, lng, answer, detail) {
   var popup = L.popup({
     autoPan: true,
     closeButton: false,
     autoPanPadding: [10,10]
   })
-    .setLatLng([lat, lng])
-    .setContent('<a id="answer-back" href="">⬅</a><h1>' + answer + '</h1><p>' + detail + '</p>')
-    .openOn(this.map);
+  .setLatLng([lat, lng])
+  .setContent('<a id="answer-back" href="">⬅</a><h1>' + answer + '</h1><p>' + detail + '</p>')
+  .openOn(this.map);
 //  $('#answer-back').on('click', reset);
-  this.markers.push(marker);
-  return true;
 }
 
 Map.prototype.removeMarkers = function () {
@@ -1044,7 +1047,8 @@ function setAnswer (answer) {
     detail = config.responseNo
   }
 
-  map.createMarker(latitude, longitude, answer, detail)
+  map.createMarker(latitude, longitude);
+  map.createPopup(latitude, longitude, answer, detail)
   map.setLocation(latitude, longitude, config.finalZoom);
 
 //  $('.leaflet-popup-content-wrapper').show().animate({opacity: 0, top: '-150px'}, 0);
