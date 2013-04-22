@@ -80,7 +80,7 @@ Map.prototype.createPopup = function (lat, lng, answer, detail) {
     autoPanPadding: [10,10]
   })
   .setLatLng([lat, lng])
-  .setContent('<a id="answer-back" href="">⬅</a><h1>' + answer + '</h1><p>' + detail + '</p>')
+  .setContent('<a id="answer-back" href=""></a><h1>' + answer + '</h1><p>' + detail + '</p>')
   .openOn(this.map);
 //  $('#answer-back').on('click', reset);
 }
