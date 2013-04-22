@@ -25,7 +25,10 @@
 // LEAFLET OVERRIDES
 
 .leaflet-clickable {
-  cursor: default !important;
+//  cursor: default !important;
+}
+.leaflet-dragging {
+  cursor: -webkit-grabbing !important;
 }
 .leaflet-popup-close-button, .leaflet-popup-tip-container {
   display: none;
@@ -33,7 +36,6 @@
 .leaflet-popup-content-wrapper {
   width: 275px;
   height: 350px;
-//  display: none;
   background: transparent url('../img/yellow_arrow.png') center top no-repeat !important;
   box-shadow: none !important;
   border-radius: 0 !important;
@@ -129,22 +131,11 @@ h1, h2 {
   #header {
     position: relative;
     top: -100px;
-    // background-color: white;
-    // width: 65%;
     margin: 0 auto;
     padding: 0;
-    // border: 1px dashed black;
     background: transparent url('../img/white_shield.png') center top no-repeat;
     width: 660px;
     height: 340px;
-    // border-radius: 10px;
-    /*
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-bottom-left-radius: 40% 45%;
-    border-bottom-right-radius: 40% 45%;
-    box-shadow: 0 0 0 10px white, 0 0 10px 8px rgba(0,0,0,0.5);
-    */
     h1 {
       font-size: 96px;
     }
@@ -173,52 +164,6 @@ h1, h2 {
     }
   }
 }
-
-
-#answer-wrapper {
-  position: absolute;
-  width: 100%;
-  height: 360px;
-  padding: 0;
-  bottom: 50%;
-  #answer {
-    display: none;
-    position: relative;
-    margin: 0 auto;
-    width: 275px;
-    height: 306px;
-    background: transparent url('../img/yellow_arrow.png') center top no-repeat;
-    text-align: center;
-    z-index: 10;  
-    h1 {
-      padding-top: 40px;
-      font-size: 130px;
-      text-transform: uppercase;
-      margin-bottom: 0;
-    }
-    p {
-      width: 200px;
-      font-size: 28px;
-      line-height: 120%;
-      margin: 0 auto;
-    }
-    a#answer-back {
-      width: 28px;
-      height: 28px;
-      border-radius: 15px;
-      border: 2px solid black;
-      background-color: white;
-      position: absolute;
-      left: 6px;
-      top: 6px;
-      font-size: 22px;
-      line-height: 35px;
-      overflow: hidden;
-      cursor: pointer;
-    }
-  }
-}
-
 
 #location-form {
   margin-top: -100px;
@@ -252,6 +197,12 @@ h1, h2 {
   text-transform: uppercase;
   margin: 10px auto;
   font-size: 20px;
+  &:hover {
+    color: #5566ff;
+  }
+  &:active {
+    background-color: #fff;
+  }
 }
 .round {
   background-color: white;

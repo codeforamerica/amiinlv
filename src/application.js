@@ -30,7 +30,6 @@ function init (data) {
   });
   $('#about-link').on('click', aboutOpen);
   $('#about-close').on('click', aboutClose);
-  $('#answer-back').on('click', reset);
 
   // Looks for what to do based on URL
   // incomplete. -louh
@@ -71,13 +70,11 @@ function render () {
  */
 
 function reset () {
-  $("#input-location").val("")
+  $('#input-location').val('')
   $('#alert').hide();
   aboutClose();
-  //$('#answer').fadeOut(150, function() {
-    $('#question').fadeIn(150);
-    $('#input-location').focus();
-  //});
+  $('#question').fadeIn(150);
+  $('#input-location').focus();
 
   map.reset();
 }
@@ -87,25 +84,14 @@ function reset () {
  */
 
 function setAnswer (answer) {
-  // Reset #answer to block element so animation will work
-  /*
-  $('#answer').show().animate({opacity: 0, top: '-150px'}, 0);
-  $('#question').fadeOut(250, function() {
-    $('#answer').animate({opacity: 1, top: '0'}, 150);
-  });
-  $('#answer h1').html(answer);
-  */
-
   // Include a message providing further information.
   // Currently, it's just a simple restatement of the
   // answer.  See GitHub issue #6.
   var detail;
-  if (answer == "Yes") {
-    //$('#answer p').html('You are within city limits!');
-    detail = 'You are within city limits!'
+  if (answer == 'Yes') {
+    detail = config.responseYes
   } else {
-    //$('#answer p').html('You are not in Las Vegas!')
-    detail = 'You are not in Las Vegas!'
+    detail = config.responseNo
   }
 
   map.createMarker(latitude, longitude, answer, detail)
