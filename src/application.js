@@ -29,7 +29,7 @@ function init (data) {
     if (e.which == 27 && e.ctrlKey == false && e.metaKey == false) reset();
   });
   $('#about-link').on('click', aboutOpen);
-  $('#about-close').on('click', aboutClose);
+  $('#about-close').on('click', reset);
 
   // Looks for what to do based on URL
   // incomplete. -louh
@@ -181,8 +181,7 @@ function submitLocation () {
   }
   else {
     $('#input-location').focus();
-    var i = 0;
-    for (i; i < 3; i++) {
+    for (var i = 0; i < 3; i++) {
       $('#input-location').animate({backgroundColor: '#fee'}, 100).animate({backgroundColor: '#fff'}, 100);
     }
     $('#alert').html('Please enter an address').slideDown(100);
@@ -227,12 +226,9 @@ function geocodeByAddress (address) {
  */
 
 function aboutOpen () {
-  // hiding this sawtooth doesn't work right now.
-  $('#plaque:after').hide();
-  
-  $('#help').hide();
-  $('#question').animate({top: '-100px'}, 250);
-  $('#about').slideDown(250);
+  $('#location-form').fadeOut(200, function (){
+    $('#about').fadeIn(200);
+  });
 }
 
 /**
@@ -240,10 +236,9 @@ function aboutOpen () {
  */
 
 function aboutClose () {
-  $('#about').slideUp(250, function() {
-      $('#help').slideDown(0);
+  $('#about').fadeOut(200, function () {
+    $('#location-form').fadeIn(200);
   });
-  $('#question').animate({top: '0'}, 250);
 }
 
 /**
