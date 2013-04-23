@@ -1111,9 +1111,7 @@ function onGetCurrentLocation () {
  */
 
 function onGo () {
-  var $input = $("#input-location"), address = $input.val();
-  geocodeByAddress(address);
-  return false;
+  submitLocation();
 }
 
 /**
@@ -1123,9 +1121,26 @@ function onGo () {
 
 function onSubmit (e) {
   e.preventDefault();
+  submitLocation();
+}
+
+/**
+ * Submits form
+ */
+function submitLocation () {
   var $input = $("#input-location"), address = $input.val();
-  geocodeByAddress(address);
-  return false;
+  if (address != '') {
+    geocodeByAddress(address);    
+  }
+  else {
+    $('#input-location').focus();
+    var i = 0;
+    for (i; i < 3; i++) {
+      $('#input-location').animate({backgroundColor: '#fee'}, 100).animate({backgroundColor: '#fff'}, 100);
+    }
+    $('#alert').html('Please enter an address').slideDown(100);
+  }
+  return false;  
 }
 
 /**
