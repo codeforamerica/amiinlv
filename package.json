@@ -11,7 +11,7 @@
   "dependencies": {
     "express": "3.x",
     "geocoder": "0.1.0",
-    "geojson-utils": "git://github.com/rclosner/geojson-js-utils.git#pip"
+    "geojson-utils": "0.2.0"
   },
 
   "engines": {
