@@ -24,7 +24,8 @@ gulp.task('watch-js', function () {
         return bundler.bundle({debug: true})
             .pipe(mold.transformSourcesRelativeTo(path.join(__dirname, 'public/js')))
             .pipe(source('application.js'))
-            .pipe(gulp.dest('public/js'));
+            .pipe(gulp.dest('public/js'))
+            .on('end', gutil.log);
     }
 
     return rebundleScripts();

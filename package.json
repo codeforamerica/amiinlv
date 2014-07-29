@@ -17,8 +17,8 @@
   },
   "scripts": {
     "start": "node server.js",
-    "make": "browserify src/application.js > public/js/application.js",
-    "watch": "browserify src/application.js -o public/js/application.js --watch --debug"
+    "make": "gulp",
+    "watch": "gulp watch"
   },
   "devDependencies": {
     "browserify": "^5.9.1",
