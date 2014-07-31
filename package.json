@@ -1,28 +1,32 @@
 {
-  "name":    "AMIINLV",
-  "main":    "index.js",
+  "name": "AMIINLV",
+  "main": "index.js",
   "version": "0.0.0",
-
   "repository": {
-    "type":"git",
+    "type": "git",
     "url": "git@github.com:codeforamerica/amiinlv.git"
   },
-
   "dependencies": {
     "express": "3.x",
     "geocoder": "0.1.0",
     "geojson-utils": "0.2.0"
   },
-
   "engines": {
     "node": "0.8.x",
     "npm": "1.1.x"
   },
-
   "scripts": {
     "start": "node server.js",
-    "make":  "browserify src/application.js > public/js/application.js",
-    "watch": "browserify src/application.js -o public/js/application.js --watch --debug"
+    "make": "gulp",
+    "watch": "gulp watch"
+  },
+  "devDependencies": {
+    "browserify": "^5.9.1",
+    "gulp": "^3.8.6",
+    "gulp-less": "^1.3.3",
+    "gulp-util": "^3.0.0",
+    "mold-source-map": "^0.3.0",
+    "vinyl-source-stream": "^0.1.1",
+    "watchify": "^0.6.4"
   }
-
 }
