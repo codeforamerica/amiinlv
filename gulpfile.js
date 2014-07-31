@@ -9,40 +9,40 @@ var browserify = require('browserify');
 
 
 gulp.task('less', function() {
-    gulp.src('public/less/application.less')
-        .pipe(less())
-        .pipe(gulp.dest('public/css/'))
-        .on('error', gutil.log);
+  gulp.src('src/styles/application.less')
+    .pipe(less())
+    .pipe(gulp.dest('public/css/'))
+    .on('error', gutil.log);
 });
 
 gulp.task('watch-js', function () {
-    var bundler = watchify('./src/application.js');
+  var bundler = watchify('./src/application.js');
 
-    bundler.on('update', rebundleScripts);
+  bundler.on('update', rebundleScripts);
 
-    function rebundleScripts() {
-        return bundler.bundle({debug: true})
-            .pipe(mold.transformSourcesRelativeTo(path.join(__dirname, 'public/js')))
-            .pipe(source('application.js'))
-            .pipe(gulp.dest('public/js'))
-            .on('end', gutil.log);
-    }
+  function rebundleScripts() {
+    return bundler.bundle({debug: true})
+      .pipe(mold.transformSourcesRelativeTo(path.join(__dirname, 'public/js')))
+      .pipe(source('application.js'))
+      .pipe(gulp.dest('public/js'))
+      .on('end', gutil.log);
+  }
 
-    return rebundleScripts();
+  return rebundleScripts();
 });
 
 gulp.task('bundle-js-single', function() {
-    var bundler = browserify({entries:['./src/application.js'], debug: true});
+  var bundler = browserify({entries:['./src/application.js'], debug: true});
 
-    return bundler.bundle()
-        .pipe(mold.transformSourcesRelativeTo(path.join(__dirname, 'public/js')))
-        .pipe(source('application.js'))
-        .pipe(gulp.dest('public/js'))
-        .on('end', gutil.log);
+  return bundler.bundle()
+    .pipe(mold.transformSourcesRelativeTo(path.join(__dirname, 'public/js')))
+    .pipe(source('application.js'))
+    .pipe(gulp.dest('public/js'))
+    .on('end', gutil.log);
 });
 
 gulp.task('watch-css', function() {
-    gulp.watch('public/less/**/*.less', ['less']);
+  gulp.watch('src/styles/**/*.less', ['less']);
 });
 
 /* -- Tasks intended to be run for ease of use */

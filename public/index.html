@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class='no-js' lang='en'>
+<html lang='en'>
 
   <head>
     <meta charset='utf-8'>
@@ -8,59 +8,53 @@
     <meta content='' name='description'>
     <meta content='width=device-width, initial-scale=1.0' name='viewport'>
 
-    <!-- <link href='css/application.css' rel='stylesheet'> -->
-    <link href='less/application.less' rel="stylesheet/less" type="text/css" />
-    <script src='js/vendor/less-1.3.3.min.js' type='text/javascript'></script>
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
+    <link href='css/application.css' rel='stylesheet'>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css">
     <!--[if lte IE 8]>
       <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.ie.css" />
     <![endif]-->
-    <link rel='stylesheet' href='http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css' />
+    <link rel='stylesheet' href='http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css'>
 
   </head>
 
   <body>
     <div id='main' role='main'>
+      <section id='question' role='main'>
+        <div id='header'>
+          <h2>Am I In</h2>
+          <h1></h1>
 
+          <p></p>
+        </div>
+        <div id='plaque'>
+          <div id='location-form'>
+            <form>
+              <p>
+                <a class='btn' href='#' id='input-target'>Use my current location</a>
+              </p>
+              <p class='round'>
+                or
+              </p>
+              <p>
+                <input id='input-location' placeholder='Enter your location' type='text'>
+                <a class='btn' href='#' id='input-go'>Tell me</a>
+              </p>
+            </form>
 
-    <section id='question-wrapper'>
-        <section id='question'>
-          <div id='header'>
-            <h2>Am I In</h2>
-            <h1></h1>
+            <div id='alert'></div>
 
+            <div id='help'>
+              <a href='#about' id='about-link'>What's this site about?</a>
+            </div>
+          </div>
+
+          <div id='about'>
             <p></p>
+
+            <p><a class='btn' href='#' id='about-close'>Close</a></p>
           </div>
-          <div id='plaque'>
-            <div id='location-form'>
-              <form>
-                <p>
-                  <a class='btn' href='#' id='input-target'>Use my current location</a>
-                </p>
-                <p class='round'>
-                  or
-                </p>
-                <p>
-                  <input id='input-location' placeholder='Enter your location' type='text'>
-                  <a class='btn' href='#' id='input-go'>Tell me</a>
-                </p>
-              </form>
 
-              <div id='alert'></div>
-
-              <div id='help'>
-                <a href='#about' id='about-link'>What's this site about?</a>
-              </div>
-            </div>
-
-            <div id='about'>
-              <p></p>
-
-              <p><a class='btn' href='#' id='about-close'>Close</a></p>
-            </div>
-
-          </div>
-        </section>
+        </div>
       </section>
 
       <!-- currently hidden from view until we figure out where to put it -->
@@ -69,17 +63,13 @@
           <img alt='Code for America flag' src='img/cfa_flag.png'>
         </a>
       </section>
-
-      <section id='map'></section>
-
     </div>
 
-    <!-- / Javascripts -->
+    <section id='map'></section>
+
     <script src='//code.jquery.com/jquery-latest.min.js'></script>
     <script src='http://code.jquery.com/ui/1.10.2/jquery-ui.js'></script>
-    <script>
-      window.jQuery || document.write('<script src="js/vendor/jquery.min.js"><\/script>')
-    </script>
+    <script> window.jQuery || document.write('<script src="js/vendor/jquery.min.js"><\/script>')</script>
     <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
     <script src='js/application.js'></script>
 
