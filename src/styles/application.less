@@ -29,6 +29,12 @@
 .leaflet-popup-close-button, .leaflet-popup-tip-container {
   display: none;
 }
+.leaflet-popup {
+  pointer-events: none;
+  a {
+    pointer-events: all;
+  }
+}
 .leaflet-popup-content-wrapper {
   width: 275px;
   height: 350px;
