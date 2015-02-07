@@ -1,18 +1,19 @@
-var guj = require("geojson-utils"),
-    geocodeAddress = require("./geocode"),
-    getCurrentLocation = require("./current_location"),
-    Map = require("./map"),
-    config = require("../config");
+'use strict';
 
-var json = {},
-    map,
-    latitude,
-    longitude;
+var gju = require('geojson-utils')
+var geocodeAddress = require('./geocode')
+var getCurrentLocation = require('./current_location')
+var Map = require('./map')
+var config = require('../config')
+
+var json = {}
+var map
+var latitude
+var longitude
 
 //--------------------
 // MAP VARIABLES
 //--------------------
-
 
 /**
  * Initializes the application and sets
@@ -20,49 +21,51 @@ var json = {},
  */
 
 function init (data) {
-  json = data, map = new Map(data);
+  /* global json, map */
+  json = data
+  map = new Map(data)
 
-  $("#input-target").on("click", onGetCurrentLocation);
-  $("#input-go").on("click", onGo);
-  $("#location-form").on("submit", onSubmit);
+  $('#input-target').on('click', onGetCurrentLocation)
+  $('#input-go').on('click', onGo)
+  $('#location-form').on('submit', onSubmit)
   $(document).keydown(function (e) {
-    if (e.which == 27 && e.ctrlKey == false && e.metaKey == false) reset();
-  });
-  $('#about-link').on('click', aboutOpen);
-  $('#about-close').on('click', reset);
+    if (e.which == 27 && e.ctrlKey == false && e.metaKey == false) reset()
+  })
+  $('#about-link').on('click', aboutOpen)
+  $('#about-close').on('click', reset)
 
   // Looks for what to do based on URL
   // incomplete. -louh
-  var q = window.location.search.substr(1);
-  switch(q) {
+  var q = window.location.search.substr(1)
+  switch (q) {
     case 'about':
-      aboutOpen();
-      break;
+      aboutOpen()
+      break
     case 'locate':
-      onGetCurrentLocation();
-      break;
+      onGetCurrentLocation()
+      break
     case 'find':
       // /find=x where x is the address to geocode
       // this is totally broken because switch case matching isn't done on partial string
-      var findgeo = q.substr(q.indexOf('='));
+      var findgeo = q.substr(q.indexOf('='))
       if (findgeo) {
-        geocodeByAddress(findgeo);        
-        break;
+        geocodeByAddress(findgeo)
+        break
       }
     default:
-      reset();
+      reset()
+      break
   }
-
 }
 
 function render () {
-  $('head title').html('Am I in ' + config.name);
-  $('#header h1').html(config.name + '?');
-  $('#header p').html(config.tagline);
-  $('#about p:first').html(config.about);
-  $('#input-location').attr('placeholder', config.address);
-  $('#input-location').focus();
-  map.render();
+  $('head title').text('Am I in ' + config.name + '?')
+  $('#header-city').text(config.name + '?')
+  $('#header-tagline').text(config.tagline)
+  $('#about p:first').html(config.about)
+  $('#input-location').attr('placeholder', config.address)
+  $('#input-location').focus()
+  map.render()
 }
 
 /**
@@ -71,12 +74,11 @@ function render () {
 
 function reset () {
   $('#input-location').val('')
-  $('#alert').hide();
-  aboutClose();
-  $('#question').fadeIn(150);
-  $('#input-location').focus();
-
-  map.reset();
+  $('#alert').hide()
+  aboutClose()
+  $('#question').fadeIn(150)
+  $('#input-location').focus()
+  map.reset()
 }
 
 /**
@@ -87,22 +89,21 @@ function setAnswer (answer) {
   // Include a message providing further information.
   // Currently, it's just a simple restatement of the
   // answer.  See GitHub issue #6.
-  var detail;
+  var detail
   if (answer == 'Yes') {
     detail = config.responseYes
   } else {
     detail = config.responseNo
   }
 
-  map.createMarker(latitude, longitude);
+  map.createMarker(latitude, longitude)
   map.createPopup(latitude, longitude, answer, detail)
-  map.setLocation(latitude, longitude, config.finalZoom);
+  map.setLocation(latitude, longitude, config.finalZoom)
 
 //  $('.leaflet-popup-content-wrapper').show().animate({opacity: 0, top: '-150px'}, 0);
-  $('#question').fadeOut(250, function() {
+  $('#question').fadeOut(250, function () {
 //    $('.leaflet-popup-content-wrapper').animate({opacity: 1, top: '0'}, 150);
-  });
-
+  })
 }
 
 /**
@@ -113,14 +114,17 @@ function setAnswer (answer) {
  */
 
 function checkWithinLimits (latitude, longitude) {
-  var point   = { type: "Point", coordinates: [ longitude, latitude ] };
-  var polygon = json.features[0].geometry;
-  var withinLimits = guj.pointInPolygon(point, polygon);
+  var point = {
+    type: 'Point',
+    coordinates: [ longitude, latitude ]
+  }
+  var polygon = json.features[0].geometry
+  var withinLimits = gju.pointInPolygon(point, polygon)
 
   if (withinLimits) {
     onWithinLimits()
   } else {
-    onOutsideLimits();
+    onOutsideLimits()
   }
 }
 
@@ -130,7 +134,7 @@ function checkWithinLimits (latitude, longitude) {
  */
 
 function onWithinLimits () {
-  setAnswer("Yes");
+  setAnswer('Yes')
 }
 
 /**
@@ -139,7 +143,7 @@ function onWithinLimits () {
  */
 
 function onOutsideLimits () {
-  setAnswer("No");
+  setAnswer('No')
 }
 
 /**
@@ -148,8 +152,8 @@ function onOutsideLimits () {
  */
 
 function onGetCurrentLocation () {
-  geocodeByCurrentLocation();
-  return false;
+  geocodeByCurrentLocation()
+  return false
 }
 
 /**
@@ -158,7 +162,7 @@ function onGetCurrentLocation () {
  */
 
 function onGo () {
-  submitLocation();
+  submitLocation()
 }
 
 /**
@@ -167,26 +171,26 @@ function onGo () {
  */
 
 function onSubmit (e) {
-  e.preventDefault();
-  submitLocation();
+  e.preventDefault()
+  submitLocation()
 }
 
 /**
  * Submits form
  */
 function submitLocation () {
-  var $input = $("#input-location"), address = $input.val();
+  var $input = $('#input-location')
+  var address = $input.val()
   if (address != '') {
-    geocodeByAddress(address);    
-  }
-  else {
-    $('#input-location').focus();
+    geocodeByAddress(address)
+  } else {
+    $('#input-location').focus()
     for (var i = 0; i < 3; i++) {
-      $('#input-location').animate({backgroundColor: '#fee'}, 100).animate({backgroundColor: '#fff'}, 100);
+      $('#input-location').animate({backgroundColor: '#fee'}, 100).animate({backgroundColor: '#fff'}, 100)
     }
-    $('#alert').html('Please enter an address').slideDown(100);
+    $('#alert').html('Please enter an address').slideDown(100)
   }
-  return false;  
+  return false
 }
 
 /**
@@ -196,29 +200,34 @@ function submitLocation () {
 
 function geocodeByCurrentLocation () {
   var onSuccess = function (position) {
-    latitude = position.coords.latitude, longitude = position.coords.longitude;
-    checkWithinLimits(latitude, longitude);
+    /* global latitude, longitude */
+    latitude = position.coords.latitude
+    longitude = position.coords.longitude
+    checkWithinLimits(latitude, longitude)
   }
 
   var onError = function (err) {
-    alert("Error getting current position");
+    alert('Error getting current position')
   }
 
-  getCurrentLocation(onSuccess, onError);
- }
+  getCurrentLocation(onSuccess, onError)
+}
 
 /**
  * Geocodes an address
- */ 
+ */
 
 function geocodeByAddress (address) {
   geocodeAddress(address, function (res) {
+    /* global latitude, longitude */
     if (res && res.results.length > 0) {
-      var result = res.results[0].geometry.location;
-      latitude = result.lat, longitude = result.lng
-      checkWithinLimits(latitude, longitude);
+      var result = res.results[0].geometry.location
+
+      latitude = result.lat
+      longitude = result.lng
+      checkWithinLimits(latitude, longitude)
     }
-  });
+  })
 }
 
 /**
@@ -227,8 +236,8 @@ function geocodeByAddress (address) {
 
 function aboutOpen () {
   $('#location-form').fadeOut(200, function (){
-    $('#about').fadeIn(200);
-  });
+    $('#about').fadeIn(200)
+  })
 }
 
 /**
@@ -237,19 +246,18 @@ function aboutOpen () {
 
 function aboutClose () {
   $('#about').fadeOut(200, function () {
-    $('#location-form').fadeIn(200);
-  });
+    $('#location-form').fadeIn(200)
+  })
 }
 
 /**
  * Retrieves the region.json file and initializes
  * the application
- */ 
+ */
 
 jQuery(document).ready(function () {
   $.getJSON(config.fileName, function (data) {
-    init(data);
-    render();
-  });
-});
-
+    init(data)
+    render()
+  })
+})

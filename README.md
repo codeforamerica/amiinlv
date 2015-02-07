@@ -23,8 +23,8 @@ To run AIILV:
 
     node server.js
 
-Build Assets
----
+Build assets
+------------
 
 In order to build the assets, you need to install gulp (npm install -g gulp).
 
@@ -39,3 +39,11 @@ The 'watch' task will monitor any less or js files for changes and re-run the le
 automatically if any appropriate files are changed.
 
 You may also use the "npm run-script" make and "npm run-script watch" commands to invoke gulp and gulp watch respectively.
+
+Browser support
+---------------
+
+- Evergreen browsers (Chrome, Firefox) - current and one previous version
+- Safari 7 and 8
+- Internet Explorer 9 and above (IE8 is explicitly not supported)
+- Mobile support: yes, but no specific minimum browsers targeted

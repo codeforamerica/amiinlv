@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang='en'>
-
   <head>
     <meta charset='utf-8'>
     <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
@@ -8,68 +7,68 @@
     <meta content='' name='description'>
     <meta content='width=device-width, initial-scale=1.0' name='viewport'>
 
-    <link href='css/application.css' rel='stylesheet'>
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css">
-    <!--[if lte IE 8]>
-      <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.ie.css" />
-    <![endif]-->
-    <link rel='stylesheet' href='http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css'>
+    <link rel='stylesheet' href='css/application.css'>
+    <link rel='stylesheet' href='http://cdn.leafletjs.com/leaflet-0.5/leaflet.css'>
+
+    <script src='js/vendor/modernizr.min.js'></script>
   </head>
 
   <body>
-    <div id='main' role='main'>
-      <section id='question' role='main'>
-        <div id='header'>
-          <h2>Am I In</h2>
-          <h1></h1>
 
+    <section id='question' role='main'>
+
+      <div id='header' class='shield'>
+        <div class='shield-content'>
+          <div class='pi'>
+            <a href='https://github.com/codeforamerica/amiinlv/' target='_blank'>
+              <img alt='Code for America flag' src='img/cfa_flag.png'>
+            </a>
+          </div>
+
+          <h1>
+            <span class='title-opener'>Am I In</span>
+            <span id='header-city' class='title-city'></span>
+          </h1>
+
+          <p id='header-tagline' class='tagline'></p>
+        </div>
+      </div>
+
+      <div id='plaque'>
+        <div id='location-form'>
+          <form>
+            <p>
+              <a class='btn' href='#' id='input-target'>Use my current location</a>
+            </p>
+            <p class='round'>
+              or
+            </p>
+            <p>
+              <input id='input-location' placeholder='Enter your location' type='text'>
+              <a class='btn' href='#' id='input-go'>Tell me</a>
+            </p>
+          </form>
+
+          <div id='alert'></div>
+
+          <div id='help'>
+            <a href='#about' id='about-link'>What's this site about?</a>
+          </div>
+        </div>
+
+        <div id='about'>
           <p></p>
+
+          <p><a class='btn' href='#' id='about-close'>Close</a></p>
         </div>
-        <div id='plaque'>
-          <div id='location-form'>
-            <form>
-              <p>
-                <a class='btn' href='#' id='input-target'>Use my current location</a>
-              </p>
-              <p class='round'>
-                or
-              </p>
-              <p>
-                <input id='input-location' placeholder='Enter your location' type='text'>
-                <a class='btn' href='#' id='input-go'>Tell me</a>
-              </p>
-            </form>
 
-            <div id='alert'></div>
-
-            <div id='help'>
-              <a href='#about' id='about-link'>What's this site about?</a>
-            </div>
-          </div>
-
-          <div id='about'>
-            <p></p>
-
-            <p><a class='btn' href='#' id='about-close'>Close</a></p>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- currently hidden from view until we figure out where to put it -->
-      <section id='pi'>
-        <a href='https://github.com/codeforamerica/amiinlv/' target='_blank'>
-          <img alt='Code for America flag' src='img/cfa_flag.png'>
-        </a>
-      </section>
-    </div>
-
+      </div>
+    </section>
     <section id='map'></section>
 
     <script src='//code.jquery.com/jquery-latest.min.js'></script>
-    <script src='http://code.jquery.com/ui/1.10.2/jquery-ui.js'></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
+    <script src='http://cdn.leafletjs.com/leaflet-0.5/leaflet.js'></script>
     <script src='js/application.js'></script>
 
   </body>

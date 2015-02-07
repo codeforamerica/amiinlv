@@ -1,25 +1,21 @@
 @import 'preboot.less';
 @import 'normalize.less';
 
-/*
- *   NOTE: THIS IS NOT OPTIMIZED!!!! I'll streamline it over time.  -louh
- */
-
 // VARIABLES
 
-@plaque-color:    rgba(255, 255, 72, 0.9);
+@plaque-color: rgba(255, 255, 72, 0.9);
 
 // TYPOGRAPHY PRESETS
 
 @font-face {
-    font-family: 'UbuntuTitling';
-    src: url('../fonts/UbuntuTitling-Bold-webfont.eot');
-    src: url('../fonts/UbuntuTitling-Bold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/UbuntuTitling-Bold-webfont.woff') format('woff'),
-         url('../fonts/UbuntuTitling-Bold-webfont.ttf') format('truetype'),
-         url('../fonts/UbuntuTitling-Bold-webfont.svg#UbuntuTitlingBold') format('svg');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'UbuntuTitling';
+  src: url('../fonts/UbuntuTitling-Bold-webfont.eot');
+  src: url('../fonts/UbuntuTitling-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/UbuntuTitling-Bold-webfont.woff') format('woff'),
+       url('../fonts/UbuntuTitling-Bold-webfont.ttf') format('truetype'),
+       url('../fonts/UbuntuTitling-Bold-webfont.svg#UbuntuTitlingBold') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
 
 // LEAFLET OVERRIDES
@@ -69,33 +65,32 @@
 }
 
 // MAIN LAYOUT
+* {
+  box-sizing: border-box;
+}
+
 html, body {
-  background-color: #eee;
-  font-family: 'UbuntuTitling', 'Arial', sans-serif !important;
-  font-size: 14px;
   overflow: hidden;
 }
 
-#main {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  overflow-y: auto;
+body {
+  background-color: #eee;
+  font-family: 'UbuntuTitling', 'Arial', sans-serif !important;
+  font-size: 14px;
 }
 
 #plaque {
   position: relative;
   top: -260px;
-  margin: 0 auto;
   width: 690px;   // width of sawtooth means this should be a multiple of 15
-  padding: 260px 15px 15px 15px;
-  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 240px 15px 15px 15px;
   background-color: @plaque-color;
   text-align: center;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-  &:after {
+  &::after {
     position: absolute;
     content: '';
     display: block;
@@ -109,8 +104,8 @@ html, body {
   }
 }
 
-h1, h2 {
-  margin: 10px 0;
+h1 {
+  margin: 0;
   padding: 0;
   font-family: 'UbuntuTitling', 'Arial', sans-serif;
   font-weight: normal;
@@ -118,48 +113,111 @@ h1, h2 {
   text-transform: uppercase;
   color: #333;
   white-space: nowrap;
+
+  @media only screen and (max-width: 767px) {
+    font-size: 1.4em;
+  }
 }
 
-#question{
+#question {
   position: absolute;
-  top: 60px;
-  width: 100%;
+  top: 2em;
+  left: 0;
+  right: 0;
+  bottom: 2em;
   z-index: 10;
   text-align: center;
 
-  #header {
+}
+
+.shield {
+  position: relative;
+  z-index: 12;
+  margin: 0 auto;
+  padding: 0;
+  background: transparent url('../img/white_shield.png') center top no-repeat;
+  width: 660px;
+  height: 340px;
+
+  @media only screen and (max-width: 767px) {
+    background: @plaque-color;
+    top: 0;
+    width: 100%;
+    height: 120px;
+  }
+}
+
+.shield-content {
+  position: absolute;
+  top: 30px;
+  bottom: 60px;
+  width: 580px;
+  left: 50%;
+  margin-left: -290px;
+  padding-top: 30px;
+
+  @media only screen and (max-width: 767px) {
     position: relative;
-    z-index: 12;
-    margin: 0 auto;
-    padding: 0;
-    background: transparent url('../img/white_shield.png') center top no-repeat;
-    width: 660px;
-    height: 340px;
-    h1 {
-      font-size: 96px;
+    top: auto;
+    bottom: auto;
+    left: auto;
+    width: 100%;
+    margin: 0;
+    padding: 20px 10px;
+  }
+
+  .title-opener {
+    position: relative;
+    font-size: 1.6em;
+
+    // Styled lines around the opening question
+    &::before, &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      margin-top: 0.4em;
+      width: 2.5em;
+      border-top: 4px double #333;
     }
-    h2 {
-      font-size: 44px;
-      padding-top: 60px;
-      &:before, &:after {
-        position: absolute;
-        content: '';
-        display: block;
-        width: 120px;
-        border-top: 4px double black;
-      }
-      &:before {
-        left: 15%;
-        margin-top: 16px;
-      }
-      &:after {
-        right: 15%;
-        margin-top: -28px;
-      }
+    &::before {
+      margin-right: 0.5em;
+      right: 3em;
     }
-    p {
-      width: 240px;
+    &::after {
+      margin-left: 0.5em;
+      left: 3em;
+    }
+  }
+
+  .title-city {
+    display: block;
+    font-size: 3.2em;
+
+    @media only screen and (max-width: 767px) {
+      display: 1.6em;
+    }
+  }
+
+  p.tagline {
+    width: 240px;
+    margin: 1em auto 0;
+
+    @media only screen and (max-width: 767px) {
       margin: 0 auto;
+    }
+  }
+
+  .pi {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: -16px;
+    width: 32px;
+    height: 8px;
+
+    @media only screen and (max-width: 767px) {
+      display: none;
     }
   }
 }
@@ -169,15 +227,15 @@ h1, h2 {
     font-size: 20px;
     p:nth-child(3) {
       height: 40px;
-      width: 425px;
-      margin: 20px auto 0;
+      width: 430px;
+      margin: 1em auto 0;
       text-align: center;
     }
-    margin-bottom: 30px;
+    margin-bottom: 1.5em;
   }
   #help {
     clear: both;
-    margin: 10px auto;
+    margin: 1em auto;
     a {
       color: black;
     }
@@ -195,7 +253,7 @@ h1, h2 {
   text-decoration: none;
   font-weight: normal;
   text-transform: uppercase;
-  margin: 10px auto;
+  margin: 1em auto;
   font-size: 20px;
   &:hover {
     color: #5566ff;
@@ -221,10 +279,10 @@ h1, h2 {
   border-bottom-left-radius: 20px;
   .box-shadow(inset 0 0 16px rgba(0,0,0,0.2));
   border: 0;
-  padding: 0 20px;
-  width: 280px;
+  padding: 0 0.25em 0 1em;
+  width: 310px;
   &:hover, &:focus {
-      outline: none;
+    outline: none;
   }
   float: left;
 }
@@ -234,7 +292,6 @@ h1, h2 {
   float: left;
   width: 120px;
   margin-top: 0px;
-  margin-left: -20px;
 }
 
 #about {
@@ -257,55 +314,22 @@ h1, h2 {
 #map {
   position: absolute;
   top: 0;
-  bottom: 0;
   left: 0;
   right: 0;
+  bottom: 0;
   z-index: -100;
   cursor: default;
 }
 
-#pi {
-  display: none;
-  position: absolute;
-  right: 10px;
-  bottom: 15px;
-  width: 32px;
-  height: 8px;
-}
 
 // MOBILE LAYOUT
 // Generally minimum screen width is 320px
 
 @media only screen and (max-width: 767px) {
 
-  body {
-    width: 320px;
-    padding: 0;
-  }
-  #ui-container {
-    top: 80px;
-  }
   #question {
     width: 100%;
-    #header {
-      background: @plaque-color;
-      top: 0;
-      h1, h2 {
-        font-size: 60px;
-        margin: 0;
-      }
-      h2 {
-        padding-top: 30px;
-        &:after, &:before {
-          display: none;
-        }
-      }
-      p {
-        display: none;
-      }
-      width: 100%;
-      height: 120px;
-    }
+
     #plaque {
       width: 100%;
       padding: 30px;
@@ -316,7 +340,6 @@ h1, h2 {
           margin-top: 0;
           #input-location, #input-go {
             border-radius: 20px;
-            box-sizing: border-box;
             width: 100% !important;
             clear: none;
             margin-left: 0;
