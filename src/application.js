@@ -76,7 +76,9 @@ function router () {
         break
       }
     default:
-      reset()
+      // TODO: Do not call this on page load since it
+      // resets the URL currently
+      // reset()
       break
   }
 }
