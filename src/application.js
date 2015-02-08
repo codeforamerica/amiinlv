@@ -223,7 +223,7 @@ function submitLocation () {
     if (Modernizr.history) {
       window.history.pushState({}, 'query', '/?query=' + encodeURIComponent(address))
     } else {
-      window.location = '/?query=' + encodeURIcomponent(address)
+      window.location = '/?query=' + encodeURIComponent(address)
     }
 
   } else {
