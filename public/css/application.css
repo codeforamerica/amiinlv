@@ -431,6 +431,11 @@ body {
   font-family: 'UbuntuTitling', 'Arial', sans-serif !important;
   font-size: 14px;
 }
+.group:after {
+  content: '';
+  display: table;
+  clear: both;
+}
 #plaque {
   position: relative;
   top: -260px;
@@ -591,7 +596,6 @@ h1 {
 #location-form form {
   font-size: 20px;
   margin-bottom: 1.5em;
-  overflow: auto;
 }
 @media only screen and (max-width: 767px) {
   #location-form form {

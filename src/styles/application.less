@@ -85,6 +85,14 @@ body {
   font-size: 14px;
 }
 
+// aka "clearfix"
+// http://css-tricks.com/snippets/css/clear-fix/
+.group:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
 #plaque {
   position: relative;
   top: -260px;
@@ -249,9 +257,6 @@ h1 {
   form {
     font-size: 20px;
     margin-bottom: 1.5em;
-
-    // clearfix
-    overflow: auto;
 
     @media only screen and (max-width: 767px) {
       margin-top: 0;
