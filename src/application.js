@@ -94,7 +94,7 @@ function reset () {
   $('#map').addClass('no-panning')
 
   // Reset URL
-  if (window.history) {
+  if (Modernizr.history) {
     window.history.pushState({}, 'home', '/')
   } else {
     window.location = '/'
@@ -218,7 +218,7 @@ function submitLocation () {
   if (address != '') {
     geocodeByAddress(address)
 
-    if (window.history) {
+    if (Modernizr.history) {
       window.history.pushState({}, 'query', '/?query=' + encodeURIComponent(address))
     } else {
       window.location = '/?query=' + encodeURIcomponent(address)
@@ -295,7 +295,7 @@ function geocodeByAddress (address) {
 function onClickAboutLink (e) {
   e.preventDefault()
 
-  if (window.history) {
+  if (Modernizr.history) {
     window.history.pushState({}, 'about', '?about')
   } else {
     window.location = '?about'
