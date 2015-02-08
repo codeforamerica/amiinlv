@@ -21,9 +21,11 @@
 // LEAFLET OVERRIDES
 
 .leaflet-clickable {
-  cursor: default !important;
+  // Use grabbing cursor instead of pointer
+  cursor: inherit !important;
 }
 .leaflet-dragging {
+  // Prefixed for Safari
   cursor: -webkit-grabbing !important;
 }
 .leaflet-popup-close-button, .leaflet-popup-tip-container {
@@ -406,6 +408,10 @@ button {
   right: 0;
   bottom: 0;
   z-index: -100;
+
+  &.no-panning {
+    cursor: default;
+  }
 }
 
 // Detected via Modernizr

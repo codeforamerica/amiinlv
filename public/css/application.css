@@ -370,7 +370,7 @@ th {
   font-style: normal;
 }
 .leaflet-clickable {
-  cursor: default !important;
+  cursor: inherit !important;
 }
 .leaflet-dragging {
   cursor: -webkit-grabbing !important;
@@ -743,6 +743,9 @@ button:active {
   right: 0;
   bottom: 0;
   z-index: -100;
+}
+#map.no-panning {
+  cursor: default;
 }
 html.geolocation .hide-if-geolocation {
   display: none;

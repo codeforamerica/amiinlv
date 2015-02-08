@@ -52,6 +52,8 @@ function init (data) {
 
   $('#input-location').focus()
   map.render()
+
+  $('#map').addClass('no-panning')
 }
 
 /**
@@ -92,6 +94,7 @@ function reset () {
   aboutClose()
   $('#question').fadeIn(150)
   $('#input-location').focus()
+  $('#map').addClass('no-panning')
 
   // Reset URL
   if (window.history) {
@@ -130,6 +133,8 @@ function setAnswer (answer) {
   map.createMarker(latitude, longitude)
   map.createPopup(latitude, longitude, answer, detail)
   map.setLocation(latitude, longitude, config.finalZoom)
+
+  $('#map').removeClass('no-panning')
 
 //  $('.leaflet-popup-content-wrapper').show().animate({opacity: 0, top: '-150px'}, 0);
   $('#question').fadeOut(250, function () {
