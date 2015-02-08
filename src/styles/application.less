@@ -147,6 +147,9 @@ h1 {
   z-index: 10;
   text-align: center;
 
+  @media only screen and (max-width: 767px) {
+    width: 100%;
+  }
 }
 
 .shield {
@@ -247,15 +250,19 @@ h1 {
     font-size: 20px;
     margin-bottom: 1.5em;
 
+    // clearfix
+    overflow: auto;
+
     @media only screen and (max-width: 767px) {
       margin-top: 0;
+      margin-bottom: 0;
     }
   }
 
   .location-form-input {
     height: 40px;
     width: 430px;
-    margin: 1em auto 0;
+    margin: 0.75em auto 0;
     text-align: center;
 
     @media only screen and (max-width: 767px) {
@@ -286,6 +293,9 @@ h1 {
   text-transform: uppercase;
   margin: 0 auto;
   font-size: 20px;
+  @media only screen and (max-width: 767px) {
+    width: 100%;
+  }
   &:hover {
     color: #5566ff;
   }
@@ -295,18 +305,29 @@ h1 {
 }
 
 .round {
-  background-color: white;
-  height: 40px;
-  border-radius: 20px;
-  color: black;
-  width: 40px;
-  margin: 1em auto;
-  line-height: 40px;
+  height: 30px;
+  width: 30px;
+  margin: 0.75em auto;
+  border-radius: 15px;
+  line-height: 30px;
+  font-size: 14px;
   text-transform: uppercase;
+  color: black;
+  background-color: white;
 
   @media only screen and (max-width: 767px) {
     margin: 0em auto;
     background: transparent;
+  }
+}
+
+#input-location,
+#input-go {
+  @media only screen and (max-width: 767px) {
+    border-radius: 20px;
+    width: 100% !important;
+    clear: none;
+    margin-left: 0;
   }
 }
 
@@ -318,25 +339,48 @@ h1 {
   border: 0;
   padding: 0 0.25em 0 1em;
   width: 310px;
+
+  @media only screen and (max-width: 767px) {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    padding: 0 0.5em;
+  }
+
   &:hover, &:focus {
     outline: none;
   }
   float: left;
 }
+
 #input-go {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
   float: left;
   width: 120px;
   margin-top: 0px;
+
+  @media only screen and (min-width: 768px) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  @media only screen and (max-width: 767px) {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+}
+
+.input-location-label {
+  margin-bottom: 0.75em;
 }
 
 #about {
-  margin-top: -200px;
   width: 550px;
   margin: 0 auto;
   display: none;
   clear: both;
+
+  @media only screen and (max-width: 767px) {
+    width: 100%;
+  }
+
   p:first-child {
     font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 12px;
@@ -371,42 +415,3 @@ html.no-geolocation {
     display: block;
   }
 }
-
-// MOBILE LAYOUT
-// Generally minimum screen width is 320px
-
-@media only screen and (max-width: 767px) {
-
-  #question {
-    width: 100%;
-
-    #plaque {
-      #location-form {
-        #input-location,
-        #input-go {
-          border-radius: 20px;
-          width: 100% !important;
-          clear: none;
-          margin-left: 0;
-        }
-        #input-location {
-          border-bottom-right-radius: 0;
-          border-bottom-left-radius: 0;
-        }
-        #input-go {
-          border-top-left-radius: 0;
-          border-top-right-radius: 0;
-        }
-      }
-      #about {
-        width: 100%;
-      }
-    }
-  }
-
-  .btn {
-    width: 100%;
-  }
-
-}
-

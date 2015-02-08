@@ -244,7 +244,11 @@ function cacheCurrentLocation () {
     longitude = position.coords.longitude
   }
 
-  getCurrentLocation(onSuccess)
+  var onError = function () {
+    $('html').removeClass('geolocation').addClass('no-geolocation')
+  }
+
+  getCurrentLocation(onSuccess, onError)
 }
 
 /**
