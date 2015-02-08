@@ -42,6 +42,11 @@ function init (data) {
   $('#about-link').on('click', onClickAboutLink)
   $('#about-close').on('click', onClickAboutClose)
 
+  $('.dismiss-ie-browser').click(function (e) {
+    e.preventDefault()
+    $('.ie-browser').hide()
+  })
+
   // Element created by map popup code
   $('body').on('click', '.reset-button', onClickPopupBack)
 }

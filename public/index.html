@@ -15,6 +15,9 @@
   </head>
 
   <body>
+    <!--[if lt IE 9]>
+      <div class='ie-browser'>You are using an <strong>outdated</strong> version of the Internet Explorer browser which is unsupported. Please <a href='http://www.browsehappy.com/' target='_blank'>upgrade to a modern browser</a> to improve your experience. <a href='#' class='dismiss-ie-browser'>Dismiss</a>.</div>
+    <![endif]-->
 
     <section id='question' role='main'>
 
@@ -37,19 +40,19 @@
 
       <div id='plaque'>
         <div id='location-form'>
-          <form>
-            <div class='show-if-geolocation'>
-              <a class='btn' href='#' id='input-target'>Use my current location</a>
-            </div>
+          <div class='show-if-geolocation'>
+            <button id='input-target'>Use my current location</button>
             <div class='round show-if-geolocation'>
               or
             </div>
+          </div>
+          <form>
             <div class='input-location-label hide-if-geolocation'>
               <label for='input-location'>Enter an address:</label>
             </div>
             <div class='location-form-input'>
               <input id='input-location' placeholder='Enter your location' type='text'>
-              <a class='btn' href='#' id='input-go'>Tell me</a>
+              <button id='input-go'>Tell me</button>
             </div>
           </form>
 
@@ -63,7 +66,9 @@
         <div id='about'>
           <p></p>
 
-          <p><a class='btn' href='?' id='about-close'>Close</a></p>
+          <p>
+            <button id='about-close'>Close</button>
+          </p>
         </div>
 
       </div>
@@ -81,7 +86,7 @@
 
     </script>
     <script src='//code.jquery.com/jquery-latest.min.js'></script>
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery.min.js"><\/script>')</script>
+    <script>window.jQuery || document.write('<script src="/js/vendor/jquery.min.js"><\/script>')</script>
     <script src='http://cdn.leafletjs.com/leaflet-0.5/leaflet.js'></script>
     <script src='/js/application.js'></script>
 

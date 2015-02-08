@@ -602,7 +602,7 @@ h1 {
 #location-form .location-form-input {
   height: 40px;
   width: 430px;
-  margin: 0.75em auto 0;
+  margin: 0 auto;
   text-align: center;
 }
 @media only screen and (max-width: 767px) {
@@ -618,29 +618,30 @@ h1 {
 #location-form #help a {
   color: black;
 }
-.btn {
-  background-color: black;
-  border-radius: 20px;
-  height: 40px;
-  line-height: 40px;
-  width: 350px;
+button {
   display: block;
+  margin: 0 auto;
+  width: 350px;
+  height: 40px;
+  border-radius: 20px;
+  border-width: 0;
+  line-height: 40px;
   color: white;
   text-decoration: none;
+  font-size: 20px;
   font-weight: normal;
   text-transform: uppercase;
-  margin: 0 auto;
-  font-size: 20px;
+  background-color: black;
 }
 @media only screen and (max-width: 767px) {
-  .btn {
+  button {
     width: 100%;
   }
 }
-.btn:hover {
+button:hover {
   color: #5566ff;
 }
-.btn:active {
+button:active {
   background-color: #fff;
 }
 .round {
@@ -728,7 +729,7 @@ h1 {
   line-height: 180%;
   text-align: left;
 }
-#about .btn {
+#about button {
   width: 150px;
 }
 #map {
@@ -747,4 +748,13 @@ html.no-geolocation .show-if-geolocation {
 }
 html.no-geolocation .hide-if-geolocation {
   display: block;
+}
+.ie-browser {
+  margin: 0;
+  padding: 10px;
+  border-bottom: 1px solid lightgray;
+  font-family: sans-serif;
+  font-size: 14px;
+  background-color: #ffffef;
+  z-index: 999999;
 }
