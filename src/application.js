@@ -47,9 +47,6 @@ function init (data) {
     $('.ie-browser').hide()
   })
 
-  // Element created by map popup code
-  $('body').on('click', '.reset-button', onClickPopupBack)
-
   $('#input-location').focus()
   map.render()
 
@@ -109,8 +106,7 @@ function reset () {
   }
 }
 
-function onClickPopupBack (e) {
-  // TODO: This is broken
+function onClickReset (e) {
   e.preventDefault()
   reset()
 }
@@ -136,10 +132,12 @@ function setAnswer (answer) {
 
   $('#map').removeClass('no-panning')
 
-//  $('.leaflet-popup-content-wrapper').show().animate({opacity: 0, top: '-150px'}, 0);
-  $('#question').fadeOut(250, function () {
-//    $('.leaflet-popup-content-wrapper').animate({opacity: 1, top: '0'}, 150);
-  })
+  // Leaflet stops event propagation in map elements, so this event
+  // needs to be bound to another one of the inner wrappers after it
+  // is created
+  $('#reset-button').on('click', onClickReset)
+
+  $('#question').fadeOut(250)
 }
 
 /**

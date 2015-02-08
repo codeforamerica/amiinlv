@@ -83,7 +83,7 @@ Map.prototype.createPopup = function (lat, lng, answer, detail) {
     autoPanPadding: [10,10]
   })
   .setLatLng([lat, lng])
-  .setContent('<a class="reset-button" href="/"></a><h1>' + answer + '</h1><p>' + detail + '</p>')
+  .setContent('<h1>' + answer + '</h1><p>' + detail + '</p><button id="reset-button">Again?</button>')
   .openOn(this.map)
 }
 
