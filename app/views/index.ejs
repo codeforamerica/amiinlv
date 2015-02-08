@@ -3,7 +3,7 @@
   <head>
     <meta charset='utf-8'>
     <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
-    <title></title>
+    <title>Am I in <%= name %>?</title>
     <meta content='' name='description'>
     <meta content='width=device-width, initial-scale=1.0' name='viewport'>
 
@@ -30,11 +30,11 @@
           </div>
 
           <h1>
-            <span class='title-opener'>Am I In</span>
-            <span id='header-city' class='title-city'></span>
+            <span class='title-opener'>Am I in</span>
+            <span class='title-city'><%= name %>?</span>
           </h1>
 
-          <p id='header-tagline' class='tagline'></p>
+          <p id='header-tagline' class='tagline'><%= tagline %></p>
         </div>
       </div>
 
@@ -51,7 +51,7 @@
               <label for='input-location'>Enter an address:</label>
             </div>
             <div class='location-form-input'>
-              <input id='input-location' placeholder='Enter your location' type='text'>
+              <input id='input-location' placeholder='<%= address %>' type='text'>
               <button id='input-go'>Tell me</button>
             </div>
           </form>
@@ -64,7 +64,7 @@
         </div>
 
         <div id='about'>
-          <p></p>
+          <p><%= about %></p>
 
           <p>
             <button id='about-close'>Close</button>

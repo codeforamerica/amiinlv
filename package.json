@@ -11,6 +11,7 @@
     "npm": "2.4.x"
   },
   "dependencies": {
+    "ejs": "^2.2.4",
     "express": "4.x",
     "geocoder": "0.2.2",
     "geojson-utils": "1.1.0"

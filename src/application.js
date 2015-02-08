@@ -49,6 +49,9 @@ function init (data) {
 
   // Element created by map popup code
   $('body').on('click', '.reset-button', onClickPopupBack)
+
+  $('#input-location').focus()
+  map.render()
 }
 
 /**
@@ -77,16 +80,6 @@ function router () {
       reset()
       break
   }
-}
-
-function render () {
-  $('head title').text('Am I in ' + config.name + '?')
-  $('#header-city').text(config.name + '?')
-  $('#header-tagline').text(config.tagline)
-  $('#about p:first').html(config.about)
-  $('#input-location').attr('placeholder', config.address)
-  $('#input-location').focus()
-  map.render()
 }
 
 /**
@@ -249,11 +242,10 @@ function cacheCurrentLocation () {
     longitude = position.coords.longitude
   }
 
-  var onError = function () {
-    $('html').removeClass('geolocation').addClass('no-geolocation')
-  }
+  // Do nothing if we are unable to do geolocation
+  // No error callback
 
-  getCurrentLocation(onSuccess, onError)
+  getCurrentLocation(onSuccess)
 }
 
 /**
@@ -353,6 +345,5 @@ preInit()
 jQuery(document).ready(function () {
   $.getJSON(config.fileName, function (data) {
     init(data)
-    render()
   })
 })
