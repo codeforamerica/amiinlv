@@ -364,8 +364,8 @@ th {
 }
 @font-face {
   font-family: 'UbuntuTitling';
-  src: url('../fonts/UbuntuTitling-Bold-webfont.eot');
-  src: url('../fonts/UbuntuTitling-Bold-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/UbuntuTitling-Bold-webfont.woff') format('woff'), url('../fonts/UbuntuTitling-Bold-webfont.ttf') format('truetype'), url('../fonts/UbuntuTitling-Bold-webfont.svg#UbuntuTitlingBold') format('svg');
+  src: url('/fonts/UbuntuTitling-Bold-webfont.eot');
+  src: url('/fonts/UbuntuTitling-Bold-webfont.eot?#iefix') format('embedded-opentype'), url('/fonts/UbuntuTitling-Bold-webfont.woff') format('woff'), url('/fonts/UbuntuTitling-Bold-webfont.ttf') format('truetype'), url('/fonts/UbuntuTitling-Bold-webfont.svg#UbuntuTitlingBold') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -388,7 +388,7 @@ th {
 .leaflet-popup-content-wrapper {
   width: 275px;
   height: 350px;
-  background: transparent url('../img/yellow_arrow.png') center top no-repeat !important;
+  background: transparent url('/img/yellow_arrow.png') center top no-repeat !important;
   box-shadow: none !important;
   border-radius: 0 !important;
   z-index: 10;
@@ -410,8 +410,8 @@ th {
   line-height: 120%;
   margin: 0 auto;
 }
-.leaflet-popup-content-wrapper .leaflet-popup-content a#answer-back {
-  background: transparent url('../img/back.svg') center center no-repeat;
+.leaflet-popup-content-wrapper .leaflet-popup-content .reset-button {
+  background: transparent url('/img/back.svg') center center no-repeat;
   width: 30px;
   height: 30px;
   position: absolute;
@@ -436,18 +436,26 @@ body {
   top: -260px;
   width: 690px;
   margin: 0 auto;
-  padding: 240px 15px 15px 15px;
+  padding: 260px 15px 15px 15px;
   background-color: rgba(255, 255, 72, 0.9);
   text-align: center;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
+@media only screen and (max-width: 767px) {
+  #plaque {
+    width: 100%;
+    padding: 1em;
+    top: 0;
+    border-radius: 0;
+  }
+}
 #plaque::after {
   position: absolute;
   content: '';
   display: block;
-  background: url('../img/sawtooth.png') repeat-x;
+  background: url('/img/sawtooth.png') repeat-x;
   opacity: 0.86;
   filter: alpha(opacity=86);
   width: 100%;
@@ -470,6 +478,11 @@ h1 {
     font-size: 1.4em;
   }
 }
+@media only screen and (max-width: 320px) {
+  h1 {
+    font-size: 1em;
+  }
+}
 #question {
   position: absolute;
   top: 2em;
@@ -484,7 +497,7 @@ h1 {
   z-index: 12;
   margin: 0 auto;
   padding: 0;
-  background: transparent url('../img/white_shield.png') center top no-repeat;
+  background: transparent url('/img/white_shield.png') center top no-repeat;
   width: 660px;
   height: 340px;
 }
@@ -493,7 +506,7 @@ h1 {
     background: rgba(255, 255, 72, 0.9);
     top: 0;
     width: 100%;
-    height: 120px;
+    height: auto;
   }
 }
 .shield-content {
@@ -513,7 +526,7 @@ h1 {
     left: auto;
     width: 100%;
     margin: 0;
-    padding: 20px 10px;
+    padding: 1em 1em 0;
   }
 }
 .shield-content .title-opener {
@@ -548,11 +561,12 @@ h1 {
   }
 }
 .shield-content p.tagline {
-  width: 240px;
+  max-width: 240px;
   margin: 1em auto 0;
 }
 @media only screen and (max-width: 767px) {
   .shield-content p.tagline {
+    max-width: 100%;
     margin: 0 auto;
   }
 }
@@ -573,11 +587,22 @@ h1 {
   font-size: 20px;
   margin-bottom: 1.5em;
 }
-#location-form form p:nth-child(3) {
+@media only screen and (max-width: 767px) {
+  #location-form form {
+    margin-top: 0;
+  }
+}
+#location-form .location-form-input {
   height: 40px;
   width: 430px;
   margin: 1em auto 0;
   text-align: center;
+}
+@media only screen and (max-width: 767px) {
+  #location-form .location-form-input {
+    width: auto;
+    margin: 0 auto;
+  }
 }
 #location-form #help {
   clear: both;
@@ -597,7 +622,7 @@ h1 {
   text-decoration: none;
   font-weight: normal;
   text-transform: uppercase;
-  margin: 1em auto;
+  margin: 0 auto;
   font-size: 20px;
 }
 .btn:hover {
@@ -612,9 +637,15 @@ h1 {
   border-radius: 20px;
   color: black;
   width: 40px;
-  margin: 0 auto;
+  margin: 1em auto;
   line-height: 40px;
   text-transform: uppercase;
+}
+@media only screen and (max-width: 767px) {
+  .round {
+    margin: 0em auto;
+    background: transparent;
+  }
 }
 #input-location {
   height: 40px;
@@ -662,45 +693,38 @@ h1 {
   bottom: 0;
   z-index: -100;
 }
+html.geolocation .hide-if-geolocation {
+  display: none;
+}
+html.no-geolocation .show-if-geolocation {
+  display: none;
+}
+html.no-geolocation .hide-if-geolocation {
+  display: block;
+}
 @media only screen and (max-width: 767px) {
   #question {
     width: 100%;
   }
-  #question #plaque {
-    width: 100%;
-    padding: 30px;
-    top: 0;
-    border-radius: 0;
-  }
-  #question #plaque #location-form form {
-    margin-top: 0;
-  }
-  #question #plaque #location-form form #input-location,
-  #question #plaque #location-form form #input-go {
+  #question #plaque #location-form #input-location,
+  #question #plaque #location-form #input-go {
     border-radius: 20px;
     width: 100% !important;
     clear: none;
     margin-left: 0;
   }
-  #question #plaque #location-form form #input-location {
+  #question #plaque #location-form #input-location {
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
   }
-  #question #plaque #location-form form #input-go {
+  #question #plaque #location-form #input-go {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
-  }
-  #question #plaque #location-form form p:nth-child(3) {
-    width: auto;
-    margin: 0 auto;
   }
   #question #plaque #about {
     width: 100%;
   }
   .btn {
     width: 100%;
-  }
-  .round {
-    background: transparent;
   }
 }

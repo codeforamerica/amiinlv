@@ -2,7 +2,10 @@ var config = require('../config')
 var MAP_ATTRIBUTION = 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://www.openstreetmap.org/copyright">ODbL</a>.'
 var TILE_LAYER_URL = 'http://tile.stamen.com/toner/{z}/{x}/{y}.png'
 
-
+// Retina tiles
+if (window.devicePixelRatio > 1) {
+  TILE_LAYER_URL = 'http://tile.stamen.com/toner/{z}/{x}/{y}@2x.png'
+}
 
 var REGION_LAYER_STYLE ={
   color: '#f11',
@@ -28,8 +31,8 @@ var Map = function (json) {
 }
 
 var markerIcon = L.icon({
-  iconUrl: '../img/marker.svg',
-  shadowUrl: '../img/marker_shadow.png',
+  iconUrl: '/img/marker.svg',
+  shadowUrl: '/img/marker_shadow.png',
 
   iconSize:     [36, 43], // size of the icon
   shadowSize:   [100, 50],
@@ -80,9 +83,8 @@ Map.prototype.createPopup = function (lat, lng, answer, detail) {
     autoPanPadding: [10,10]
   })
   .setLatLng([lat, lng])
-  .setContent('<a id="answer-back" href="/"></a><h1>' + answer + '</h1><p>' + detail + '</p>')
+  .setContent('<a class="reset-button" href="/"></a><h1>' + answer + '</h1><p>' + detail + '</p>')
   .openOn(this.map)
-//  $('#answer-back').on('click', reset);
 }
 
 Map.prototype.removeMarkers = function () {

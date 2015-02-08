@@ -20,6 +20,14 @@ var longitude
  * event listeners
  */
 
+function preInit () {
+  router()
+
+  // Requests browser's permission to use
+  // geolocator upon page load, if necessary
+  cacheCurrentLocation()
+}
+
 function init (data) {
   /* global json, map */
   json = data
@@ -31,21 +39,29 @@ function init (data) {
   $(document).keydown(function (e) {
     if (e.which == 27 && e.ctrlKey == false && e.metaKey == false) reset()
   })
-  $('#about-link').on('click', aboutOpen)
-  $('#about-close').on('click', reset)
+  $('#about-link').on('click', onClickAboutLink)
+  $('#about-close').on('click', onClickAboutClose)
 
-  // Looks for what to do based on URL
-  // incomplete. -louh
+  // Element created by map popup code
+  $('body').on('click', '.reset-button', onClickPopupBack)
+}
+
+/**
+ * Checks page route and acts accordingly
+ */
+
+function router () {
   var q = window.location.search.substr(1)
+
   switch (q) {
     case 'about':
-      aboutOpen()
+      aboutOpenInstantaneously()
       break
     case 'locate':
       onGetCurrentLocation()
       break
-    case 'find':
-      // /find=x where x is the address to geocode
+    case 'query':
+      // /query=x where x is the address to geocode
       // this is totally broken because switch case matching isn't done on partial string
       var findgeo = q.substr(q.indexOf('='))
       if (findgeo) {
@@ -78,7 +94,24 @@ function reset () {
   aboutClose()
   $('#question').fadeIn(150)
   $('#input-location').focus()
-  map.reset()
+
+  // Reset URL
+  if (window.history) {
+    window.history.pushState({}, 'home', '/')
+  } else {
+    window.location = '/'
+  }
+
+  // Reset map if initialized
+  if (map) {
+    map.reset()
+  }
+}
+
+function onClickPopupBack (e) {
+  // TODO: This is broken
+  e.preventDefault()
+  reset()
 }
 
 /**
@@ -183,6 +216,13 @@ function submitLocation () {
   var address = $input.val()
   if (address != '') {
     geocodeByAddress(address)
+
+    if (window.history) {
+      window.history.pushState({}, 'query', '/?query=' + encodeURIComponent(address))
+    } else {
+      window.location = '/?query=' + encodeURIcomponent(address)
+    }
+
   } else {
     $('#input-location').focus()
     for (var i = 0; i < 3; i++) {
@@ -191,6 +231,20 @@ function submitLocation () {
     $('#alert').html('Please enter an address').slideDown(100)
   }
   return false
+}
+
+/**
+ * Initial current location cache
+ */
+
+function cacheCurrentLocation () {
+  var onSuccess = function (position) {
+    /* global latitude, longitude */
+    latitude = position.coords.latitude
+    longitude = position.coords.longitude
+  }
+
+  getCurrentLocation(onSuccess)
 }
 
 /**
@@ -207,7 +261,7 @@ function geocodeByCurrentLocation () {
   }
 
   var onError = function (err) {
-    alert('Error getting current position')
+    alert('Error getting current position. Geolocation may be disabled on this browser.')
   }
 
   getCurrentLocation(onSuccess, onError)
@@ -234,21 +288,53 @@ function geocodeByAddress (address) {
  * Opens about window
  */
 
+function onClickAboutLink (e) {
+  e.preventDefault()
+
+  if (window.history) {
+    window.history.pushState({}, 'about', '?about')
+  } else {
+    window.location = '?about'
+  }
+
+  aboutOpen()
+}
+
 function aboutOpen () {
-  $('#location-form').fadeOut(200, function (){
+  $('#location-form').fadeOut(200, function () {
     $('#about').fadeIn(200)
   })
+}
+
+/**
+ * Opens about window, without animation
+ */
+
+function aboutOpenInstantaneously () {
+  $('#location-form').hide()
+  $('#about').show()
 }
 
 /**
  * Closes about window
  */
 
+function onClickAboutClose (e) {
+  e.preventDefault()
+  reset()
+}
+
 function aboutClose () {
   $('#about').fadeOut(200, function () {
     $('#location-form').fadeIn(200)
   })
 }
+
+/**
+ * Determine what needs to be done based on URI
+ */
+
+preInit()
 
 /**
  * Retrieves the region.json file and initializes
