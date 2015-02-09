@@ -497,6 +497,7 @@ h2 {
   }
 }
 #question {
+  display: none;
   position: absolute;
   top: 2em;
   left: 0;

@@ -69,13 +69,17 @@ function onClickDismissIEMessage (e) {
 
 function router () {
   var q = window.location.search.substr(1)
+  var page = q.split('=')[0]
+  var values = q.split('=')[1]
 
-  switch (q) {
+  switch (page) {
     case 'about':
       aboutOpenInstantaneously()
       break
-    case 'locate':
-      onGetCurrentLocation()
+    case 'latlng':
+      var lat = parseFloat(values.split(',')[0])
+      var lng = parseFloat(values.split(',')[1])
+      goToLatLng(lat, lng)
       break
     case 'query':
       // /query=x where x is the address to geocode
@@ -102,6 +106,9 @@ window.onpopstate = function (event) {
     switch (event.state.page) {
       case 'about':
         aboutOpen()
+        break
+      case 'latlng':
+        goToLatLng(event.state.latitude, event.state.longitude)
         break
       default:
         reset()
@@ -134,6 +141,9 @@ function setExampleLink () {
  */
 
 function reset () {
+  // Show the question box
+  $('#question').show()
+
   $('#input-location').val('')
   $('#alert').hide()
   aboutClose()
@@ -318,6 +328,18 @@ function geocodeByCurrentLocation () {
     latitude = position.coords.latitude
     longitude = position.coords.longitude
     checkWithinLimits(latitude, longitude)
+
+    // Set URL
+    var URLString = '?latlng=' + latitude + ',' + longitude
+    if (Modernizr.history) {
+      window.history.pushState({
+        page: 'latlng',
+        latitude: latitude,
+        longitude: longitude
+      }, 'latlng', URLString)
+    } else {
+      window.location = URLString
+    }
   }
 
   var onError = function (err) {
@@ -326,6 +348,15 @@ function geocodeByCurrentLocation () {
   }
 
   getCurrentLocation(onSuccess, onError)
+}
+
+function goToLatLng (lat, lng) {
+  // Set global values too
+  latitude = lat
+  longitude = lng
+
+  // Check
+  checkWithinLimits(latitude, longitude)
 }
 
 function resetCurrentLocationButton () {
@@ -380,6 +411,9 @@ function aboutOpen () {
  */
 
 function aboutOpenInstantaneously () {
+  // Show the question box
+  $('#question').show()
+
   $('#location-form').hide()
   $('#about').show()
 }
