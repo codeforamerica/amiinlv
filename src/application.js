@@ -92,7 +92,7 @@ function onClickExampleLink (e) {
   e.preventDefault()
 
   var address = $('#example-link').text()
-  $('#input-location').val(address + ', ' + config.name)
+  $('#input-location').val(address)
 }
 
 function setExampleLink () {
@@ -301,7 +301,7 @@ function geocodeByCurrentLocation () {
  */
 
 function geocodeByAddress (address) {
-  geocodeAddress(address, function (res) {
+  geocodeAddress(address, config.regionBias, function (res) {
     /* global latitude, longitude */
     if (res && res.results.length > 0) {
       var result = res.results[0].geometry.location

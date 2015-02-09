@@ -2,6 +2,7 @@ var config = {
   name: 'Las Vegas',
   latitude: 36.18,
   longitude: -115.18,
+  regionBias: '35.773258,-115.642090|36.469890,-114.636840',
   initialZoom: 13,
   finalZoom: 14,
   fileName: '/data/region.geojson',
@@ -12,7 +13,11 @@ var config = {
   examples: [
     '1319 Shadow Mountain Place',
     '3497 Holly Ave',
-    '953 East Sahara Avenue'
+    '953 East Sahara Avenue',
+    '3490 N Torrey Pines Drive',
+    '8787 W Washburn Drive',
+    '3355 South Las Vegas Boulevard',
+    '6967 W Tropical Parkway'
   ]
 }
 
