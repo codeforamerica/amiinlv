@@ -657,6 +657,9 @@ button:hover {
 button:active {
   background-color: #fff;
 }
+button .loading-text {
+  display: none;
+}
 .round {
   height: 30px;
   width: 30px;

@@ -35,7 +35,8 @@ function init (data) {
 
   // Setup event listeners
   $('#input-target').on('click', onGetCurrentLocation)
-  $('#input-go').on('click', onGo)
+  // Go and Submit does the same thing, don't want to execute it twice
+  //$('#input-go').on('click', onGo)
   $('#location-form').on('submit', onSubmit)
   $('#about-link').on('click', onClickAboutLink)
   $('#about-close').on('click', onClickAboutClose)
@@ -115,6 +116,7 @@ function reset () {
   $('#input-location').val('')
   $('#alert').hide()
   aboutClose()
+  resetCurrentLocationButton()
   $('#question').fadeIn(150)
   $('#input-location').focus()
   $('#map').addClass('no-panning')
@@ -215,8 +217,9 @@ function onOutsideLimits () {
  */
 
 function onGetCurrentLocation () {
+  $('#input-target .loading-text').show()
+  $('#input-target .default-text').hide()
   geocodeByCurrentLocation()
-  return false
 }
 
 /**
@@ -294,9 +297,15 @@ function geocodeByCurrentLocation () {
 
   var onError = function (err) {
     alert('Unable to retrieve current position. Geolocation may be disabled on this browser or unavailable on this system.')
+    resetCurrentLocationButton()
   }
 
   getCurrentLocation(onSuccess, onError)
+}
+
+function resetCurrentLocationButton () {
+  $('#input-target .loading-text').hide()
+  $('#input-target .default-text').show()
 }
 
 /**
