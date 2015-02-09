@@ -1,6 +1,5 @@
 var config = {
   name: 'Las Vegas',
-  address: '495 S. Las Vegas Blvd',
   latitude: 36.18,
   longitude: -115.18,
   initialZoom: 13,
