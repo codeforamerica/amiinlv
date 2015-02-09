@@ -16,7 +16,9 @@
 
   <body>
     <!--[if lt IE 9]>
-      <div class='ie-browser'>You are using an <strong>outdated</strong> version of the Internet Explorer browser which is unsupported. Please <a href='http://www.browsehappy.com/' target='_blank'>upgrade to a modern browser</a> to improve your experience. <a href='#' class='dismiss-ie-browser'>Dismiss</a>.</div>
+      <div class='ie-browser'>
+        You are using an <strong>outdated</strong> version of the Internet Explorer browser which is unsupported. Please <a href='http://www.browsehappy.com/' target='_blank'>upgrade to a modern browser</a> to improve your experience. <a href='#' id='dismiss-ie-browser'>Dismiss</a>.
+      </div>
     <![endif]-->
 
     <section id='question' role='main'>
@@ -53,7 +55,7 @@
             </div>
           </form>
 
-          <div id='alert'></div>
+          <div id='alert' class='alert'></div>
 
           <% if (examples || examples.length > 0) { %>
             <div id='examples'>

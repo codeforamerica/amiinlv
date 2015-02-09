@@ -86,9 +86,6 @@ Map.prototype.createPopup = function (lat, lng, answer, detail) {
   .setLatLng([lat, lng])
   .setContent('<h1>' + answer + '</h1><p>' + detail + '</p><button id="reset-button">Again?</button>')
   .openOn(this.map)
-
-  // We are going to need to manually pan the map to fit
-  // the popup on mobile and tiny screens
 }
 
 Map.prototype.removeMarkers = function () {

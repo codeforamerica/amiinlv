@@ -384,14 +384,21 @@ button {
   margin-bottom: 0.75em;
 }
 
-a,
-a:visited {
-  color: #333;
+// Namespace custom link styles to page sections
+section {
+  a,
+  a:visited {
+    color: #333;
+  }
+
+  a:hover,
+  a:active {
+    color: #555;
+  }
 }
 
-a:hover,
-a:active {
-  color: #555;
+.alert {
+  color: red;
 }
 
 #about {

@@ -721,13 +721,16 @@ button:active {
 .input-location-label {
   margin-bottom: 0.75em;
 }
-a,
-a:visited {
+section a,
+section a:visited {
   color: #333;
 }
-a:hover,
-a:active {
+section a:hover,
+section a:active {
   color: #555;
+}
+.alert {
+  color: red;
 }
 #about {
   width: 550px;

@@ -33,25 +33,29 @@ function init (data) {
   json = data
   map = new Map(data)
 
+  // Setup event listeners
   $('#input-target').on('click', onGetCurrentLocation)
   $('#input-go').on('click', onGo)
   $('#location-form').on('submit', onSubmit)
-  $(document).keydown(function (e) {
-    if (e.which == 27 && e.ctrlKey == false && e.metaKey == false) reset()
-  })
   $('#about-link').on('click', onClickAboutLink)
   $('#about-close').on('click', onClickAboutClose)
   $('#example-link').on('click', onClickExampleLink)
-
-  $('.dismiss-ie-browser').click(function (e) {
-    e.preventDefault()
-    $('.ie-browser').hide()
-  })
+  $('#dismiss-ie-browser').on('click', onClickDismissIEMessage)
 
   $('#input-location').focus()
   map.render()
 
   $('#map').addClass('no-panning')
+
+  // Press escape to reset the view
+  $(document).keydown(function (e) {
+    if (e.which == 27 && e.ctrlKey == false && e.metaKey == false) reset()
+  })
+}
+
+function onClickDismissIEMessage (e) {
+  e.preventDefault()
+  $('.ie-browser').hide()
 }
 
 /**
@@ -248,15 +252,14 @@ function submitLocation () {
     } else {
       window.location = '/?query=' + encodeURIComponent(address)
     }
-
   } else {
-    $('#input-location').focus()
-    for (var i = 0; i < 3; i++) {
-      $('#input-location').animate({backgroundColor: '#fee'}, 100).animate({backgroundColor: '#fff'}, 100)
-    }
-    $('#alert').html('Please enter an address').slideDown(100)
+    displayAlert('Please enter an address')
   }
   return false
+}
+
+function displayAlert (message) {
+  $('#alert').html(message).slideDown(100)
 }
 
 /**
@@ -309,6 +312,9 @@ function geocodeByAddress (address) {
       latitude = result.lat
       longitude = result.lng
       checkWithinLimits(latitude, longitude)
+    } else {
+      // No results!
+      displayAlert('No results for this address!')
     }
   })
 }
