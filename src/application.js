@@ -41,6 +41,7 @@ function init (data) {
   })
   $('#about-link').on('click', onClickAboutLink)
   $('#about-close').on('click', onClickAboutClose)
+  $('#example-link').on('click', onClickExampleLink)
 
   $('.dismiss-ie-browser').click(function (e) {
     e.preventDefault()
@@ -84,6 +85,25 @@ function router () {
 }
 
 /**
+ * Fill in the address input with the example
+ */
+
+function onClickExampleLink (e) {
+  e.preventDefault()
+
+  var address = $('#example-link').text()
+  $('#input-location').val(address + ', ' + config.name)
+}
+
+function setExampleLink () {
+  var examples = config.examples || []
+  if (examples.length > 0) {
+    var i = Math.floor(Math.random() * examples.length)
+    $('#example-link').text(examples[i])
+  }
+}
+
+/**
  * Resets the application to its initial state
  */
 
@@ -101,6 +121,9 @@ function reset () {
   } else {
     window.location = '/'
   }
+
+  // New example link!
+  setExampleLink()
 
   // Reset map if initialized
   if (map) {

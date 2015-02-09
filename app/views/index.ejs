@@ -58,6 +58,14 @@
 
           <div id='alert'></div>
 
+          <% if (examples || examples.length > 0) { %>
+            <div id='examples'>
+              Try this example!
+              <% var i = Math.floor(Math.random() * examples.length) %>
+              <a href='' id='example-link'><%= examples[i] %></a>
+            </div>
+          <% } %>
+
           <div id='help'>
             <a href='?about' id='about-link'>What's this site about?</a>
           </div>
