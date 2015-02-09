@@ -77,14 +77,18 @@ Map.prototype.createMarker = function (lat, lng) {
 }
 
 Map.prototype.createPopup = function (lat, lng, answer, detail) {
+  // As of Leaflet 0.6+, autoPan is buggy and unreliable
+  // (my guess? because we're overwriting a lot of that popup appearance style)
   var popup = L.popup({
-    autoPan: true,
-    closeButton: false,
-    autoPanPadding: [10,10]
+    autoPan: false,
+    closeButton: false
   })
   .setLatLng([lat, lng])
   .setContent('<h1>' + answer + '</h1><p>' + detail + '</p><button id="reset-button">Again?</button>')
   .openOn(this.map)
+
+  // We are going to need to manually pan the map to fit
+  // the popup on mobile and tiny screens
 }
 
 Map.prototype.removeMarkers = function () {

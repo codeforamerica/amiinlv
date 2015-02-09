@@ -151,18 +151,18 @@ function setAnswer (answer) {
     detail = config.responseNo
   }
 
-  map.createMarker(latitude, longitude)
-  map.createPopup(latitude, longitude, answer, detail)
-  map.setLocation(latitude, longitude, config.finalZoom)
+  $('#question').fadeOut(250, function () {
+    map.createMarker(latitude, longitude)
+    map.createPopup(latitude, longitude, answer, detail)
+    map.setLocation(latitude, longitude, config.finalZoom)
 
-  $('#map').removeClass('no-panning')
+    $('#map').removeClass('no-panning')
 
-  // Leaflet stops event propagation in map elements, so this event
-  // needs to be bound to another one of the inner wrappers after it
-  // is created
-  $('#reset-button').on('click', onClickReset)
-
-  $('#question').fadeOut(250)
+    // Leaflet stops event propagation in map elements, so this event
+    // needs to be bound to another one of the inner wrappers after it
+    // is created
+    $('#reset-button').on('click', onClickReset)
+  })
 }
 
 /**
@@ -290,7 +290,7 @@ function geocodeByCurrentLocation () {
   }
 
   var onError = function (err) {
-    alert('Error getting current position. Geolocation may be disabled on this browser.')
+    alert('Unable to retrieve current position. Geolocation may be disabled on this browser or unavailable on this system.')
   }
 
   getCurrentLocation(onSuccess, onError)

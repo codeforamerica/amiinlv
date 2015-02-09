@@ -47,3 +47,12 @@ Browser support
 - Safari 7 and 8
 - Internet Explorer 9 and above (IE8 is explicitly not supported)
 - Mobile support: yes, but no specific minimum browsers targeted
+
+Need an official address checker?
+---------------------------------
+
+Try these:
+
+* [Business licensing jurisdiction](http://www.lasvegasnevada.gov/Apply/27541.htm)
+* [Report a problem](http://m.lasvegasnevada.gov/ReportProblem.aspx) form via the City of Las Vegas mobile site
+* [CLV GIS Geo services](http://clvplaces.appspot.com/) if you are more of a GIS-minded person

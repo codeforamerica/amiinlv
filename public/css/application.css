@@ -625,9 +625,6 @@ h1 {
   clear: both;
   margin: 1em auto;
 }
-#location-form #help a {
-  color: black;
-}
 button {
   display: block;
   margin: 0 auto;
@@ -724,8 +721,13 @@ button:active {
 .input-location-label {
   margin-bottom: 0.75em;
 }
-#example-link {
+a,
+a:visited {
   color: #333;
+}
+a:hover,
+a:active {
+  color: #555;
 }
 #about {
   width: 550px;
