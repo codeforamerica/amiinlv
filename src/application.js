@@ -21,6 +21,10 @@ var longitude
  */
 
 function preInit () {
+  // Force initial page load to have a triggered onpopstate
+  if (Modernizr.history) {
+    window.history.replaceState(null, null, document.URL)
+  }
   router()
 
   // Requests browser's permission to use
@@ -50,7 +54,7 @@ function init (data) {
 
   // Press escape to reset the view
   $(document).keydown(function (e) {
-    if (e.which == 27 && e.ctrlKey == false && e.metaKey == false) reset()
+    if (e.which == 27 && e.ctrlKey == false && e.metaKey == false) loadHomePage()
   })
 }
 
@@ -82,10 +86,27 @@ function router () {
         break
       }
     default:
-      // TODO: Do not call this on page load since it
-      // resets the URL currently
-      // reset()
+      reset()
       break
+  }
+}
+
+// Listen for history changes
+window.onpopstate = function (event) {
+  // This event will fire on initial page load for Safari and old Chrome
+  // So lack of state does not necessarily mean reset, depend on router here
+  if (!event.state) {
+    router()
+    return
+  } else {
+    switch (event.state.page) {
+      case 'about':
+        aboutOpen()
+        break
+      default:
+        reset()
+        break
+    }
   }
 }
 
@@ -121,13 +142,6 @@ function reset () {
   $('#input-location').focus()
   $('#map').addClass('no-panning')
 
-  // Reset URL
-  if (Modernizr.history) {
-    window.history.pushState({}, 'home', '/')
-  } else {
-    window.location = '/'
-  }
-
   // New example link!
   setExampleLink()
 
@@ -137,9 +151,20 @@ function reset () {
   }
 }
 
+function loadHomePage () {
+  reset()
+
+  // Set URL
+  if (Modernizr.history) {
+    window.history.pushState({}, 'home', '/')
+  } else {
+    window.location = '/'
+  }
+}
+
 function onClickReset (e) {
   e.preventDefault()
-  reset()
+  loadHomePage()
 }
 
 /**
@@ -336,7 +361,7 @@ function onClickAboutLink (e) {
   e.preventDefault()
 
   if (Modernizr.history) {
-    window.history.pushState({}, 'about', '?about')
+    window.history.pushState({ page: 'about' }, 'about', '?about')
   } else {
     window.location = '?about'
   }
@@ -365,7 +390,7 @@ function aboutOpenInstantaneously () {
 
 function onClickAboutClose (e) {
   e.preventDefault()
-  reset()
+  loadHomePage()
 }
 
 function aboutClose () {
@@ -378,7 +403,7 @@ function aboutClose () {
  * Determine what needs to be done based on URI
  */
 
-preInit()
+window.onload = preInit
 
 /**
  * Retrieves the region.json file and initializes
