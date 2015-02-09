@@ -46,13 +46,11 @@
   font-family: 'UbuntuTitling';
   .leaflet-popup-content {
     text-align: center;
-    h1 {
+    h2 {
       margin-top: 45px;
       margin-bottom: 0;
       line-height: 100px;
       font-size: 130px;
-      text-transform: uppercase;
-      letter-spacing: -2px;
     }
     p {
       width: 200px;
@@ -133,7 +131,8 @@ body {
   }
 }
 
-h1 {
+h1,
+h2 {
   margin: 0;
   padding: 0;
   font-family: 'UbuntuTitling', 'Arial', sans-serif;
@@ -142,6 +141,7 @@ h1 {
   text-transform: uppercase;
   color: #333;
   white-space: nowrap;
+  letter-spacing: -2px;
 
   @media only screen and (max-width: 767px) {
     font-size: 1.4em;
@@ -218,11 +218,11 @@ h1 {
       border-top: 4px double #333;
     }
     &::before {
-      margin-right: 0.5em;
+      margin-right: 0.25em;
       right: 3em;
     }
     &::after {
-      margin-left: 0.5em;
+      margin-left: 0.25em;
       left: 3em;
     }
   }
@@ -304,6 +304,8 @@ button {
   font-weight: normal;
   text-transform: uppercase;
   background-color: black;
+  white-space: nowrap;
+  overflow: hidden;
   pointer-events: all;
 
   @media only screen and (max-width: 767px) {

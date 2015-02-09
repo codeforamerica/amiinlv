@@ -408,13 +408,11 @@ th {
     }
     */
 }
-.leaflet-popup-content-wrapper .leaflet-popup-content h1 {
+.leaflet-popup-content-wrapper .leaflet-popup-content h2 {
   margin-top: 45px;
   margin-bottom: 0;
   line-height: 100px;
   font-size: 130px;
-  text-transform: uppercase;
-  letter-spacing: -2px;
 }
 .leaflet-popup-content-wrapper .leaflet-popup-content p {
   width: 200px;
@@ -474,7 +472,8 @@ body {
   bottom: -10px;
   left: 0;
 }
-h1 {
+h1,
+h2 {
   margin: 0;
   padding: 0;
   font-family: 'UbuntuTitling', 'Arial', sans-serif;
@@ -483,14 +482,17 @@ h1 {
   text-transform: uppercase;
   color: #333;
   white-space: nowrap;
+  letter-spacing: -2px;
 }
 @media only screen and (max-width: 767px) {
-  h1 {
+  h1,
+  h2 {
     font-size: 1.4em;
   }
 }
 @media only screen and (max-width: 320px) {
-  h1 {
+  h1,
+  h2 {
     font-size: 1em;
   }
 }
@@ -560,11 +562,11 @@ h1 {
   border-top: 4px double #333;
 }
 .shield-content .title-opener::before {
-  margin-right: 0.5em;
+  margin-right: 0.25em;
   right: 3em;
 }
 .shield-content .title-opener::after {
-  margin-left: 0.5em;
+  margin-left: 0.25em;
   left: 3em;
 }
 .shield-content .title-city {
@@ -640,6 +642,8 @@ button {
   font-weight: normal;
   text-transform: uppercase;
   background-color: black;
+  white-space: nowrap;
+  overflow: hidden;
   pointer-events: all;
 }
 @media only screen and (max-width: 767px) {

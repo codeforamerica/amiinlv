@@ -84,7 +84,7 @@ Map.prototype.createPopup = function (lat, lng, answer, detail) {
     closeButton: false
   })
   .setLatLng([lat, lng])
-  .setContent('<h1>' + answer + '</h1><p>' + detail + '</p><button id="reset-button">Again?</button>')
+  .setContent('<h2>' + answer + '</h2><p>' + detail + '</p><button id="reset-button">Again?</button>')
   .openOn(this.map)
 }
 
