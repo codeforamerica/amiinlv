@@ -86,19 +86,18 @@ function router () {
       var lng = parseFloat(values.split(',')[1])
       if (!lat || !lng) {
         reset()
-        break
       } else {
         goToLatLng(lat, lng)
       }
       break
-    case 'query':
-      // /query=x where x is the address to geocode
-      // this is totally broken because switch case matching isn't done on partial string
-      var findgeo = q.substr(q.indexOf('='))
-      if (findgeo) {
-        geocodeByAddress(findgeo)
-        break
+    case 'address':
+      var address = decodeURIComponent(values)
+      if (!address) {
+        reset()
+      } else {
+        goToAddress(address)
       }
+      break
     default:
       reset()
       break
@@ -119,6 +118,9 @@ window.onpopstate = function (event) {
         break
       case 'latlng':
         goToLatLng(event.state.latitude, event.state.longitude)
+        break
+      case 'address':
+        goToAddress(event.state.address)
         break
       default:
         reset()
@@ -176,7 +178,7 @@ function loadHomePage () {
 
   // Set URL
   if (Modernizr.history) {
-    window.history.pushState({}, 'home', '/')
+    window.history.pushState({}, null, '/')
   } else {
     window.location = '/'
   }
@@ -296,9 +298,12 @@ function submitLocation () {
     geocodeByAddress(address)
 
     if (Modernizr.history) {
-      window.history.pushState({}, 'query', '/?query=' + encodeURIComponent(address))
+      window.history.pushState({
+        page: 'address',
+        address: address
+      }, null, '/?address=' + encodeURIComponent(address))
     } else {
-      window.location = '/?query=' + encodeURIComponent(address)
+      window.location = '/?address=' + encodeURIComponent(address)
     }
   } else {
     displayAlert('Please enter an address')
@@ -346,7 +351,7 @@ function geocodeByCurrentLocation () {
         page: 'latlng',
         latitude: latitude,
         longitude: longitude
-      }, 'latlng', URLString)
+      }, null, URLString)
     } else {
       window.location = URLString
     }
@@ -365,7 +370,7 @@ function goToLatLng (lat, lng) {
   latitude = lat
   longitude = lng
 
-  // Check
+  // Poor man's promise awaiter
   var checker = function () {
     if (json.features && json.features.length > 0) {
       checkWithinLimits(latitude, longitude)
@@ -393,12 +398,27 @@ function geocodeByAddress (address) {
 
       latitude = result.lat
       longitude = result.lng
-      checkWithinLimits(latitude, longitude)
+
+      // Poor man's promise awaiter
+      var checker = function () {
+        if (json.features && json.features.length > 0) {
+          checkWithinLimits(latitude, longitude)
+        } else {
+          window.setTimeout(checker, 500)
+        }
+      }
+      checker()
+
+      //checkWithinLimits(latitude, longitude)
     } else {
       // No results!
       displayAlert('No results for this address!')
     }
   })
+}
+
+function goToAddress (address) {
+  geocodeByAddress(address)
 }
 
 /**
@@ -409,7 +429,7 @@ function onClickAboutLink (e) {
   e.preventDefault()
 
   if (Modernizr.history) {
-    window.history.pushState({ page: 'about' }, 'about', '?about')
+    window.history.pushState({ page: 'about' }, null, '?about')
   } else {
     window.location = '?about'
   }
