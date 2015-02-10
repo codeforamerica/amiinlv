@@ -3,6 +3,16 @@ Am I in Las Vegas?
 
 Sometimes it's hard to know, because the city limits have the complexity of a fractal curve.
 
+http://amiinlasvegas.com/
+
+### Press!
+
+* ["An Interactive Map Shows Leaving Las Vegas Is Easier Than You Think"](http://www.citylab.com/politics/2014/12/an-interactive-map-shows-leaving-las-vegas-is-easier-than-you-think/383297/) - [Laura Bliss](https://twitter.com/mslaurabliss), _CityLab_, December 2, 2014
+* ["Are you in Las Vegas? You may be surprised"](http://www.lasvegassun.com/news/2014/dec/14/are-you-las-vegas-you-may-be-surprised/) - Ed Komenda, _Las Vegas Sun_, December 14, 2014
+
+More info at [Code for America](http://www.codeforamerica.org/governments/lasvegas/).
+
+
 Install
 -------
 
