@@ -12,7 +12,6 @@ app.set('port', process.env.PORT || PORT)
 app.use(sass({
   src: __dirname + '/src',
   dest: __dirname + '/public',
-  debug: true,
   outputStyle: 'compressed'
 }))
 
