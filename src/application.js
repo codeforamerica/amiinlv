@@ -329,19 +329,7 @@ function geocodeByCurrentLocation () {
   var onSuccess = function (position) {
     latitude = position.coords.latitude
     longitude = position.coords.longitude
-    checkWithinLimits(latitude, longitude)
-
-    // Set URL
-    var URLString = '?latlng=' + latitude + ',' + longitude
-    if (Modernizr.history) {
-      window.history.pushState({
-        page: 'latlng',
-        latitude: latitude,
-        longitude: longitude
-      }, null, URLString)
-    } else {
-      window.location = URLString
-    }
+    loadLatLng(latitude, longitude)
   }
 
   var onError = function (err) {
@@ -351,6 +339,11 @@ function geocodeByCurrentLocation () {
   }
 
   getCurrentLocation(onSuccess, onError)
+}
+
+function loadLatLng (lat, lng) {
+  goToLatLng(latitude, longitude)
+  setLatLngURL(latitude, longitude)
 }
 
 function goToLatLng (lat, lng) {
@@ -367,6 +360,20 @@ function goToLatLng (lat, lng) {
     }
   }
   checker()
+}
+
+// Set URL
+function setLatLngURL (lat, lng) {
+  var URLString = '?latlng=' + lat + ',' + lng
+  if (Modernizr.history) {
+    window.history.pushState({
+      page: 'latlng',
+      latitude: lat,
+      longitude: lng
+    }, null, URLString)
+  } else {
+    window.location = URLString
+  }
 }
 
 function resetCurrentLocationButton () {

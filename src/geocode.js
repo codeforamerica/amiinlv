@@ -1,3 +1,6 @@
+'use strict'
+/* global $ */
+
 var GOOGLE_MAPS_URL = 'http://maps.googleapis.com/maps/api/geocode/json'
 
 // Google Maps Geocoding API documentation

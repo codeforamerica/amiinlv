@@ -2,7 +2,7 @@ var getCurrentLocation = function (success, error) {
   var geolocator = window.navigator.geolocation
   var options = {
     enableHighAccuracy: true,
-    maximumAge: 5000
+    maximumAge: 10000
   }
 
   if (geolocator) {
