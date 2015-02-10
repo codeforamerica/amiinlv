@@ -65,6 +65,10 @@ LeafletMap.prototype.reset = function () {
 }
 
 LeafletMap.prototype.setLocation = function (lat, lng, zoom) {
+  // This is a hack to slightly nudge
+  // the center of the viewport so that
+  // the popup could be shown in viewport!
+  lat = lat + 0.01
   this.map.setView([lat, lng], zoom)
   this.map.dragging.enable()
   return true
