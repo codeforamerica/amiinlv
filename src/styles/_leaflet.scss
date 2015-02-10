@@ -1,0 +1,24 @@
+
+// LEAFLET OVERRIDES
+
+.leaflet-clickable {
+  // Use grabbing cursor instead of pointer
+  cursor: inherit !important;
+}
+
+.leaflet-dragging {
+  // Prefixed for Safari
+  cursor: -webkit-grabbing !important;
+}
+
+.leaflet-popup-close-button,
+.leaflet-popup-tip-container {
+  display: none;
+}
+
+.leaflet-popup {
+  pointer-events: none;
+  a {
+    pointer-events: all;
+  }
+}

@@ -1,0 +1,8 @@
+
+// aka "clearfix"
+// http://css-tricks.com/snippets/css/clear-fix/
+.group:after {
+  content: '';
+  display: table;
+  clear: both;
+}

@@ -1,4 +1,5 @@
-'use strict';
+'use strict'
+/* global Modernizr, $ */
 
 var gju = require('geojson-utils')
 var geocodeAddress = require('./geocode')
@@ -11,9 +12,9 @@ var map
 var latitude
 var longitude
 
-//--------------------
-// MAP VARIABLES
-//--------------------
+// --------------------
+//  MAP VARIABLES
+// --------------------
 
 /**
  * Initializes the application and sets
@@ -33,14 +34,11 @@ function preInit () {
 }
 
 function init (data) {
-  /* global json, map */
   json = data
   map = new Map(data)
 
   // Setup event listeners
   $('#input-target').on('click', onGetCurrentLocation)
-  // Go and Submit does the same thing, don't want to execute it twice
-  //$('#input-go').on('click', onGo)
   $('#location-form').on('submit', onSubmit)
   $('#about-link').on('click', onClickAboutLink)
   $('#about-close').on('click', onClickAboutClose)
@@ -54,7 +52,7 @@ function init (data) {
 
   // Press escape to reset the view
   $(document).keydown(function (e) {
-    if (e.which == 27 && e.ctrlKey == false && e.metaKey == false) loadHomePage()
+    if (e.which === 27 && e.ctrlKey === false && e.metaKey === false) loadHomePage()
   })
 }
 
@@ -198,7 +196,7 @@ function setAnswer (answer) {
   // Currently, it's just a simple restatement of the
   // answer.  See GitHub issue #6.
   var detail
-  if (answer == 'Yes') {
+  if (answer === 'Yes') {
     detail = config.responseYes
   } else {
     detail = config.responseNo
@@ -274,15 +272,6 @@ function onGetCurrentLocation () {
  * whether it is within the limits
  */
 
-function onGo () {
-  submitLocation()
-}
-
-/**
- * Submits the form, geocodes the address, and checks
- * whether it is within the limits
- */
-
 function onSubmit (e) {
   e.preventDefault()
   submitLocation()
@@ -294,7 +283,7 @@ function onSubmit (e) {
 function submitLocation () {
   var $input = $('#input-location')
   var address = $input.val()
-  if (address != '') {
+  if (address !== '') {
     geocodeByAddress(address)
 
     if (Modernizr.history) {
@@ -321,7 +310,6 @@ function displayAlert (message) {
 
 function cacheCurrentLocation () {
   var onSuccess = function (position) {
-    /* global latitude, longitude */
     latitude = position.coords.latitude
     longitude = position.coords.longitude
   }
@@ -339,7 +327,6 @@ function cacheCurrentLocation () {
 
 function geocodeByCurrentLocation () {
   var onSuccess = function (position) {
-    /* global latitude, longitude */
     latitude = position.coords.latitude
     longitude = position.coords.longitude
     checkWithinLimits(latitude, longitude)
@@ -358,6 +345,7 @@ function geocodeByCurrentLocation () {
   }
 
   var onError = function (err) {
+    console.log(err)
     alert('Unable to retrieve current position. Geolocation may be disabled on this browser or unavailable on this system.')
     resetCurrentLocationButton()
   }
@@ -392,7 +380,6 @@ function resetCurrentLocationButton () {
 
 function geocodeByAddress (address) {
   geocodeAddress(address, config.regionBias, function (res) {
-    /* global latitude, longitude */
     if (res && res.results.length > 0) {
       var result = res.results[0].geometry.location
 
@@ -409,7 +396,7 @@ function geocodeByAddress (address) {
       }
       checker()
 
-      //checkWithinLimits(latitude, longitude)
+      // checkWithinLimits(latitude, longitude)
     } else {
       // No results!
       displayAlert('No results for this address!')

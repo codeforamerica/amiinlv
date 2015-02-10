@@ -1,3 +1,6 @@
+'use strict'
+/* global L */
+
 var config = require('../config')
 var MAP_ATTRIBUTION = 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://www.openstreetmap.org/copyright">ODbL</a>.'
 var TILE_LAYER_URL = 'http://tile.stamen.com/toner/{z}/{x}/{y}.png'
@@ -7,7 +10,7 @@ if (window.devicePixelRatio > 1) {
   TILE_LAYER_URL = 'http://tile.stamen.com/toner/{z}/{x}/{y}@2x.png'
 }
 
-var REGION_LAYER_STYLE ={
+var REGION_LAYER_STYLE = {
   color: '#f11',
   weight: 5,
   opacity: 0.1

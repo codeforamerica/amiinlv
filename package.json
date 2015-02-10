@@ -14,12 +14,12 @@
     "ejs": "^2.2.4",
     "express": "4.x",
     "geocoder": "0.2.2",
-    "geojson-utils": "1.1.0"
+    "geojson-utils": "1.1.0",
+    "node-sass-middleware": "^0.4.0"
   },
   "devDependencies": {
     "browserify": "^8.1.3",
     "gulp": "^3.8.10",
-    "gulp-less": "^2.0.1",
     "gulp-util": "^3.0.3",
     "mold-source-map": "^0.3.0",
     "standard": "^2.3.2",

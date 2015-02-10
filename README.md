@@ -35,10 +35,12 @@ If you only want to run the stylesheet compiler and js compile, simply run gulp.
 
 The default task will do a once-off compile and close.
 
-The 'watch' task will monitor any less or js files for changes and re-run the less or browserify build
+The 'watch' task will monitor any js files for changes and re-run the browserify build
 automatically if any appropriate files are changed.
 
 You may also use the "npm run-script" make and "npm run-script watch" commands to invoke gulp and gulp watch respectively.
+
+Stylesheets are now auto-generated from source [SCSS](http://sass-lang.com/) in the Express server via middleware, so 
 
 Browser support
 ---------------
