@@ -69,17 +69,27 @@ function onClickDismissIEMessage (e) {
 
 function router () {
   var q = window.location.search.substr(1)
-  var page = q.split('=')[0]
-  var values = q.split('=')[1]
+  var pair = q.split('=')
+  var page = pair[0]
+  var values = pair[1]
 
   switch (page) {
     case 'about':
       aboutOpenInstantaneously()
       break
     case 'latlng':
+      if (!values) {
+        reset()
+        break
+      }
       var lat = parseFloat(values.split(',')[0])
       var lng = parseFloat(values.split(',')[1])
-      goToLatLng(lat, lng)
+      if (!lat || !lng) {
+        reset()
+        break
+      } else {
+        goToLatLng(lat, lng)
+      }
       break
     case 'query':
       // /query=x where x is the address to geocode
@@ -356,7 +366,14 @@ function goToLatLng (lat, lng) {
   longitude = lng
 
   // Check
-  checkWithinLimits(latitude, longitude)
+  var checker = function () {
+    if (json.features && json.features.length > 0) {
+      checkWithinLimits(latitude, longitude)
+    } else {
+      window.setTimeout(checker, 500)
+    }
+  }
+  checker()
 }
 
 function resetCurrentLocationButton () {
@@ -437,15 +454,13 @@ function aboutClose () {
  * Determine what needs to be done based on URI
  */
 
-window.onload = preInit
+preInit()
 
 /**
  * Retrieves the region.json file and initializes
  * the application
  */
 
-jQuery(document).ready(function () {
-  $.getJSON(config.fileName, function (data) {
-    init(data)
-  })
+$.getJSON(config.fileName, function (data) {
+  init(data)
 })
