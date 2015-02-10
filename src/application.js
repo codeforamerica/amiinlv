@@ -4,7 +4,7 @@
 var gju = require('geojson-utils')
 var geocodeAddress = require('./geocode')
 var getCurrentLocation = require('./current_location')
-var Map = require('./map')
+var Leaflet = require('./map')
 var config = require('../config')
 
 var json = {}
@@ -35,7 +35,7 @@ function preInit () {
 
 function init (data) {
   json = data
-  map = new Map(data)
+  map = new Leaflet(data)
 
   // Setup event listeners
   $('#input-target').on('click', onGetCurrentLocation)
