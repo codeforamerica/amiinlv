@@ -4,6 +4,11 @@
 
 $plaque-color: rgba(255, 255, 72, 0.9);
 
+// Media query breakpoints
+$screen-regular: "only screen and (min-width: 768px)";
+$screen-small: "only screen and (max-width: 767px)";
+$screen-tiny: "only screen and (max-width: 320px)";
+
 // IMPORTS
 
 @import 'typography';
