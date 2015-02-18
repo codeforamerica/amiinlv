@@ -89,11 +89,10 @@ function router () {
       }
       break
     case 'address':
-      var address = decodeURIComponent(values)
-      if (!address) {
+      if (!values) {
         reset()
       } else {
-        goToAddress(address)
+        goToAddress(decodeURIComponent(values))
       }
       break
     default:
@@ -406,6 +405,7 @@ function geocodeByAddress (address) {
       // checkWithinLimits(latitude, longitude)
     } else {
       // No results!
+      $('#question').show()
       displayAlert('No results for this address!')
     }
   })
