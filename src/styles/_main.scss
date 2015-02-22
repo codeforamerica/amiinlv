@@ -114,6 +114,11 @@ h2 {
   width: 100%;
   height: 100%;
 
+  // Also add this here because there is
+  // a webkit bug where the bottom edge of
+  // the SVG is still interfering with button
+  pointer-events: none;
+
   svg {
     width: 660px;
     height: 360px;
