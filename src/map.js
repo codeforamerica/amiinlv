@@ -1,13 +1,19 @@
 'use strict'
-/* global L */
+/* global L, Modernizr */
 
 var config = require('../config')
 var MAP_ATTRIBUTION = 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://www.openstreetmap.org/copyright">ODbL</a>.'
 var TILE_LAYER_URL = 'http://tile.stamen.com/toner/{z}/{x}/{y}.png'
+var MARKER_IMAGE_FILE = '/img/marker.svg'
 
 // Retina tiles
 if (window.devicePixelRatio > 1) {
   TILE_LAYER_URL = 'http://tile.stamen.com/toner/{z}/{x}/{y}@2x.png'
+}
+
+// Fallback for no SVG support
+if (!Modernizr.svg) {
+  MARKER_IMAGE_FILE = '/img/marker.png'
 }
 
 var REGION_LAYER_STYLE = {
@@ -34,7 +40,7 @@ var LeafletMap = function (json) {
 }
 
 var markerIcon = L.icon({
-  iconUrl: '/img/marker.svg',
+  iconUrl: MARKER_IMAGE_FILE,
   shadowUrl: '/img/marker_shadow.png',
 
   iconSize: [36, 43], // size of the icon
