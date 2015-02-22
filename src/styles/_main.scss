@@ -123,6 +123,10 @@ h2 {
   // the SVG is still interfering with button
   pointer-events: none;
 
+  @media #{$screen-small} {
+    display: none;
+  }
+
   svg {
     width: 660px;
     height: 360px;
