@@ -325,6 +325,8 @@ function cacheCurrentLocation () {
  */
 
 function geocodeByCurrentLocation () {
+  /* eslint-disable no-alert */
+
   var onSuccess = function (position) {
     latitude = position.coords.latitude
     longitude = position.coords.longitude
