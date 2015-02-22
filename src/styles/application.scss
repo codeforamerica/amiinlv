@@ -3,6 +3,7 @@
 // VARIABLES
 
 $plaque-color: rgba(255, 255, 72, 0.9);
+$plaque-color-fallback: rgb(255, 255, 72);
 
 // Media query breakpoints
 $screen-regular: "only screen and (min-width: 768px)";

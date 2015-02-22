@@ -57,7 +57,7 @@ Browser support
 
 - Evergreen browsers (Chrome, Firefox) - current and one previous version
 - Safari - current and one previous version
-- Internet Explorer 9 and above (IE8 is explicitly not supported)
+- Internet Explorer 9 and above (IE8 is not supported, but there are hooks for fleshing out backwards compatibility and support should that ever become necessary)
 - Mobile support: yes, but no specific minimum browsers targeted
 
 Need an official address checker?
