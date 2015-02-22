@@ -50,10 +50,16 @@ function init (data) {
 
   $('#map').addClass('no-panning')
 
-  // Press escape to reset the view
+  // Set up listener for escape key, which resets the view
   $(document).keydown(function (e) {
     if (e.which === 27 && e.ctrlKey === false && e.metaKey === false) loadHomePage()
   })
+
+  // Only load fallback images if SVG capabilities are not there
+  if (!Modernizr.svg) {
+    $('#fallback-shield').html('<img src="/img/white_shield.png">')
+    $('#fallback-flag-tag').html('<img src="/img/flag-tag.png" alt="Code for America" width="32" height="8">')
+  }
 }
 
 function onClickDismissIEMessage (e) {

@@ -41,7 +41,7 @@ In order to build the assets, you need to install gulp (npm install -g gulp).
 You are of course free to use the locally installed gulp node module if you prefer.
     node node_modules/gulp/bin/gulp.js
 
-If you only want to run the stylesheet compiler and js compile, simply run gulp.
+If you only want to run the SVG compiler and js compile, simply run gulp.
 
 The default task will do a once-off compile and close.
 
@@ -50,13 +50,13 @@ automatically if any appropriate files are changed.
 
 You may also use the "npm run-script" make and "npm run-script watch" commands to invoke gulp and gulp watch respectively.
 
-Stylesheets are now auto-generated from source [SCSS](http://sass-lang.com/) in the Express server via middleware, so 
+Stylesheets are now auto-generated from source [SCSS](http://sass-lang.com/) in the Express server via middleware.
 
 Browser support
 ---------------
 
 - Evergreen browsers (Chrome, Firefox) - current and one previous version
-- Safari 7 and 8
+- Safari - current and one previous version
 - Internet Explorer 9 and above (IE8 is explicitly not supported)
 - Mobile support: yes, but no specific minimum browsers targeted
 

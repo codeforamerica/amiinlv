@@ -1,17 +1,1 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="36px"
-	 height="43px" viewBox="0 0 36 43" enable-background="new 0 0 36 43" xml:space="preserve">
-<g id="Layer_5">
-	<path fill="#231F20" d="M30.728,5.271c7.029,7.029,7.029,18.427,0,25.456C27.213,34.242,18,43,18,43S8.786,34.242,5.271,30.728
-		c-7.029-7.029-7.029-18.427,0-25.456S23.698-1.758,30.728,5.271z"/>
-</g>
-<g id="Layer_2">
-	<circle fill="#231F20" cx="18" cy="18" r="18"/>
-	<circle fill="#231F20" cx="18" cy="18" r="18"/>
-</g>
-<g id="Layer_3">
-	<circle fill="#FFFFFF" cx="18" cy="18" r="10"/>
-</g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="36" height="43" viewBox="0 0 36 43"><path fill="#231F20" d="M30.728 5.27c7.03 7.03 7.03 18.428 0 25.457C27.213 34.242 18 43 18 43S8.786 34.242 5.27 30.728c-7.028-7.03-7.028-18.427 0-25.456s18.428-7.03 25.458 0z"/><g fill="#231F20"><circle cx="18" cy="18" r="18"/><circle cx="18" cy="18" r="18"/></g><circle fill="#fff" cx="18" cy="18" r="10"/></svg>

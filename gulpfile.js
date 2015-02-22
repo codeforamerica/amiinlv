@@ -2,6 +2,7 @@ var gulp = require('gulp')
 var gutil = require('gulp-util')
 var rename = require('gulp-rename')
 var uglify = require('gulp-uglify')
+var svgSprite = require('gulp-svg-sprite')
 var watchify = require('watchify')
 var source = require('vinyl-source-stream')
 var mold = require('mold-source-map')
@@ -49,9 +50,32 @@ gulp.task('bundle-js-single', function () {
     .on('end', gutil.log)
 })
 
+gulp.task('bundle-svg', function () {
+  return gulp.src('./src/images/*.svg')
+    .pipe(svgSprite({
+      log: 'verbose',
+      shape: {
+        id: {
+          generator: 'svg-%s'
+        }
+      },
+      mode: {
+        symbol: {
+          dest: '',
+          sprite: 'images.svg',
+          inline: true
+        }
+      }
+    }))
+    .pipe(gulp.dest('./public/img'))
+})
+
 /* -- Tasks intended to be run for ease of use */
 /* usage: gulp */
-gulp.task('default', ['bundle-js-single'])
+gulp.task('default', ['bundle-js-single', 'bundle-svg'])
 
 /*usage: gulp watch */
 gulp.task('watch', ['watch-js'])
+
+/*usage: gulp watch */
+gulp.task('svg', ['bundle-svg'])

@@ -14,6 +14,13 @@ body {
   font-size: 14px;
 }
 
+.svg-fallback {
+  display: none;
+}
+html.no-svg .svg-fallback {
+  display: inherit;
+}
+
 #plaque {
   position: relative;
   top: -260px;
@@ -89,7 +96,6 @@ h2 {
   z-index: 12;
   margin: 0 auto;
   padding: 0;
-  background: transparent url('/img/white_shield.png') center top no-repeat;
   width: 660px;
   height: 340px;
 
@@ -98,6 +104,26 @@ h2 {
     top: 0;
     width: 100%;
     height: auto;
+  }
+}
+
+.shield-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  svg {
+    width: 660px;
+    height: 360px;
+    pointer-events: none;
+    -webkit-filter: drop-shadow(0 6px 15px rgba(0, 0, 0, 0.15));
+            filter: drop-shadow(0 6px 15px rgba(0, 0, 0, 0.15));
+  }
+
+  img {
+    margin: 0 auto;
   }
 }
 
@@ -170,6 +196,12 @@ h2 {
     margin-left: -16px;
     width: 32px;
     height: 8px;
+
+    .flag-tag {
+      width: 100%;
+      height: 100%;
+      fill: lightgray;
+    }
 
     @media #{$screen-small} {
       display: none;

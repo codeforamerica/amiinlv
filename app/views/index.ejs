@@ -21,13 +21,23 @@
       </div>
     <![endif]-->
 
-    <section id='question' role='main'>
+    <% include ../../public/img/images.svg %>
 
+    <section id='question' role='main'>
       <div id='header' class='shield'>
+        <div class='shield-background'>
+          <svg>
+            <use xlink:href='#svg-shield'>
+          </svg>
+          <div id='fallback-shield' class='svg-fallback'></div>
+        </div>
         <div class='shield-content'>
           <div class='pi'>
             <a href='https://github.com/codeforamerica/amiinlv/' target='_blank'>
-              <img alt='Code for America flag' src='img/cfa_flag.png'>
+              <svg class='flag-tag'>
+                <use xlink:href='#svg-flag-tag'>
+              </svg>
+              <div id='fallback-flag-tag' class='svg-fallback'></div>
             </a>
           </div>
 
