@@ -90,6 +90,12 @@ LeafletMap.prototype.createMarker = function (lat, lng) {
 }
 
 LeafletMap.prototype.createPopup = function (lat, lng, answer, detail) {
+  // Popup content
+  var content = ''
+  content += '<div class="popup-background"><svg class="svg-popup"><use xlink:href="#svg-popup"></svg></div>'
+  content += '<h2>' + answer + '</h2><p>' + detail + '</p>'
+  content += '<button id="reset-button">Again?</button>'
+
   // As of Leaflet 0.6+, autoPan is buggy and unreliable
   // (my guess? because we're overwriting a lot of that popup appearance style)
   L.popup({
@@ -97,7 +103,7 @@ LeafletMap.prototype.createPopup = function (lat, lng, answer, detail) {
     closeButton: false
   })
   .setLatLng([lat, lng])
-  .setContent('<h2>' + answer + '</h2><p>' + detail + '</p><button id="reset-button">Again?</button>')
+  .setContent(content)
   .openOn(this.map)
 }
 
