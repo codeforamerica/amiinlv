@@ -1,5 +1,5 @@
 var config = {
-  name: 'Miami',
+  name: 'Las Vegas',
   latitude: 36.18,
   longitude: -115.18,
   regionBias: '35.773258,-115.642090|36.469890,-114.636840',
