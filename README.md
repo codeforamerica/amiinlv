@@ -25,6 +25,13 @@ Install
 2. Install the additional Node `express` module:
 
     npm install express
+    
+#### Install on a Mac using Terminal #### 
+
+1. install node.js and npm
+2. <code>npm install express</code>
+3. <code>npm install</code>
+4. <code>npm install -g gulp</code> (May need sudo for this)
 
 Run
 ---
@@ -48,9 +55,16 @@ The default task will do a once-off compile and close.
 The 'watch' task will monitor any js files for changes and re-run the browserify build
 automatically if any appropriate files are changed.
 
-You may also use the "npm run-script" make and "npm run-script watch" commands to invoke gulp and gulp watch respectively.
+You may also use the "npm run-script make" and "npm run-script watch" commands to invoke gulp and gulp watch respectively.
 
 Stylesheets are now auto-generated from source [SCSS](http://sass-lang.com/) in the Express server via middleware.
+
+Gotcha
+---------------
+
+On 3/12/15, "npm run-script watch" and "npm run-script test" failed due to a Browserify glitch. 
+
+Changing <code>"watchify": "^2.4.0"</code> in package.json to <code>"watchify": "0.8.1"</code> resolves the error, but potentially causes others. Proceed with caution.
 
 Browser support
 ---------------

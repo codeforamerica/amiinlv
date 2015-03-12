@@ -34,7 +34,7 @@ gulp.task('watch-js', function () {
 })
 
 gulp.task('bundle-js-single', function () {
-  var bundler = browserify({ entries: ['./src/application.js'], debug: true })
+  var bundler = browserify({ entries: ['./src/application.js'], debug: true, cache: {}, packageCache: {}, fullPaths: true}) //cache: {}, packageCache: {}, fullPaths: true
 
   return bundler.bundle()
     .pipe(mold.transformSourcesRelativeTo(path.join(__dirname, 'public/js')))
