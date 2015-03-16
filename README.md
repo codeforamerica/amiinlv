@@ -26,7 +26,7 @@ Install
 
     npm install express
     
-#### Install on a Mac using Terminal #### 
+#### Install on a Mac using Terminal 
 
 1. install node.js and npm
 2. <code>npm install express</code>
